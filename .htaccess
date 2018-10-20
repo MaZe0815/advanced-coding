@@ -1,0 +1,53 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks -MultiViews
+    RewriteEngine On
+
+    RewriteRule ^admin/ - [L,NC]
+
+    RewriteCond %{THE_REQUEST} \ /(.+/)?index\.php(\?.*)?\ [NC]
+    RewriteRule ^(.+/)?index\.php$ /%1 [NC,R=301,L]
+
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteCond %{SCRIPT_FILENAME} -f
+    RewriteCond %{REQUEST_URI} ^(/.+)\.php$
+    RewriteRule ^(.+)\.php$ %1/ [R=301,L]
+
+    RewriteCond %{REQUEST_URI} !(/$|\.)
+    RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
+
+    RewriteCond %{REQUEST_URI} ^(/.+)/$
+    RewriteCond %{DOCUMENT_ROOT}%1.php -f
+    RewriteRule ^.+/$ %1.php [QSA,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/gif "access plus 7 days"
+    ExpiresByType image/ico "access plus 7 days"
+    ExpiresByType image/jpeg "access plus 7 days"
+    ExpiresByType image/jpg "access plus 7 days"
+    ExpiresByType image/png "access plus 7 days"
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType text/javascript "access plus 7 days"
+    ExpiresByType application/x-javascript "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+<FilesMatch "\.(gif|ico|jpeg|jpg|jpe|png)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+<FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=604800, public, must-revalidate"
+</FilesMatch>
+
+<filesMatch ".(php|cgi)$">
+    Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
+</filesMatch>
+</IfModule>
+
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>

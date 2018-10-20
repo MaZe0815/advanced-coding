@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /ajax/
+Disallow: /class/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /inc/
+Disallow: /js/
+Disallow: /mail_templates/
+Disallow: /pdf_orders/
