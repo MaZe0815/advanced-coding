@@ -13,11 +13,9 @@
         ?>
     </head>
     <body>
-        <?php
-        /* $debug_console = new debug_console();
-          $debug_console->debug_data = $set_meta_tags->seo_array;
-          $debug_console->debug_console_output(); */
-        ?>
+        <?php include 'inc/inc-header.php'; ?>
+        <?php include 'inc/inc-menu.php'; ?>
+        <?php include 'inc/inc-footer.php'; ?>
         <script src="js/js_functions.js" type="text/javascript"></script>
         <?php include "inc/inc-debug-console.php"; ?>
     </body>
