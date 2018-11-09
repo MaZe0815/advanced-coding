@@ -297,3 +297,12 @@ ol ul {
 li {
     margin-bottom: 1rem;
 }
+
+/* Overall link styles */
+a {
+    color: #1EAEDB;
+}
+
+a:hover {
+    color: #0FA0CE;
+}
