@@ -17,7 +17,7 @@
             <?php include 'inc/inc-header.php'; ?>
             <div class="content">
                 <div class="haeder_logo">
-                    <img src="https://via.placeholder.com/1920x450" alt="Startseite">
+                    <img src="https://picsum.photos/g/1920/450?image=7" alt="Startseite">
                 </div>
                 <?php include 'inc/inc-menu.php'; ?>
                 <h1>Impressum</h1>
