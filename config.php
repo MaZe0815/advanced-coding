@@ -12,6 +12,7 @@ if (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !
 define('HTTP_HOST', $scheme . getenv('HTTP_HOST'));
 define('ROOT_DIR', dirname(__FILE__));
 define('ROOT_URL', substr($_SERVER['PHP_SELF'], 0, - (strlen($_SERVER['SCRIPT_FILENAME']) - strlen(ROOT_DIR))));
+define('SCRIPT_NAME', basename($_SERVER['PHP_SELF']));
 
 // define projectname
 define('PROJECT_NAME', '');
