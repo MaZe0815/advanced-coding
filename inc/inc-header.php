@@ -4,8 +4,8 @@
         <a class="ac-bar-item ac-button" href="#">Artikel&uuml;bersicht</a>
         <a class="ac-bar-item ac-button" href="#">Kontakt</a>
         <a class="ac-bar-item ac-button" href="#">Impressum</a>
-        <a href="#" class="topnav-icons fa fa-search ac-right ac-bar-item ac-button"></a>
-        <a href="#" class="topnav-icons fa fa-shopping-cart ac-right ac-bar-item ac-button"></a>
+        <a class="topnav-icons fa fa-search ac-right ac-bar-item ac-button"  id="search_click" onclick="display_function('inline_search', this.id);"></a>
+        <a class="topnav-icons fa fa-shopping-cart ac-right ac-bar-item ac-button" id="cart_click" onclick="display_function('inline_search', this.id);"></a>
         <a class="ac-bar-item ac-button ac-right" href="#">Login</a>
         <a class="ac-bar-item ac-button ac-right" href="#">Registrieren</a>
     </div>
