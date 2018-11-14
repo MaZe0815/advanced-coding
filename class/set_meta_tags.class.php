@@ -49,21 +49,24 @@ class set_meta_tags {
 
                 if ($this->seo_array['index_allow'] === true) {
 
-                    echo '<meta name="robots" content="index, nofollow">' . "\n";
+                    echo '<meta name="robots" content="index, nofollow, noarchive">' . "\n";
                     echo '<meta name="googlebot" content="index">' . "\n";
                     echo '<meta name="googlebot" content="nofollow">' . "\n";
+                    echo '<meta name="googlebot" content="nofarchive">' . "\n";
                 } else {
 
-                    echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+                    echo '<meta name="robots" content="noindex, nofollow, noarchive">' . "\n";
                     echo '<meta name="googlebot" content="noindex">' . "\n";
                     echo '<meta name="googlebot" content="nofollow">' . "\n";
+                    echo '<meta name="googlebot" content="nofarchive">' . "\n";
                 }
             }
         } else {
 
-            echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+            echo '<meta name="robots" content="noindex, nofollow, nofarchive">' . "\n";
             echo '<meta name="googlebot" content="noindex">' . "\n";
             echo '<meta name="googlebot" content="nofollow">' . "\n";
+            echo '<meta name="googlebot" content="nofarchive">' . "\n";
         }
     }
 
