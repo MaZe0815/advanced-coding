@@ -210,7 +210,7 @@
                                 -
                                 Mail
                                 -
-                                Adresse: [shop@mustershop.biz]
+                                Adresse: <a href='mailto:example@example.biz'>example@example.biz</a>
                             </p>
                         </div>
                     </div>
