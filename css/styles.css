@@ -153,14 +153,24 @@ div.header {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.topnav a{
+div.header a.topnav_logo:hover {
+    background-color: #6cf;
+}
+
+div.header .topnav_logo img {
+    height: 18px;
+    position: relative;
+    top: 5px;
+}
+
+.topnav a {
     padding:10px 15px 9px 15px;
     color:#ffffff !important;
     text-decoration: none;
 }
 
 .topnav a:hover,.topnav a:focus{
-    background-color:#000000 !important;
+    background-color:#000000;
     color:#ffffff !important;
 }
 

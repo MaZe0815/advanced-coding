@@ -3,7 +3,9 @@
         <div class="header ac_card">
             <div class="topnav">
                 <div class="twelve columns">
-                    <a class="topnav-icons fa fa-home ac-left ac-bar-item ac-button <?php echo (SCRIPT_NAME === "index.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>"></a>
+                    <a class="topnav_logo ac-bar-item ac-button <?php echo (SCRIPT_NAME === "index.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>">
+                        <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/placeholder-logo.png" alt="Placeholder Logo">
+                    </a>
                     <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "artikeluebersicht.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/artikeluebersicht">Artikel&uuml;bersicht</a>
                     <div class="ac-right">
                         <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "login.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/login">Login</a>
