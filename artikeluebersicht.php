@@ -5,7 +5,7 @@
         <?php include 'inc/inc-meta.php'; ?>
         <?php
         $set_meta_tags = new set_meta_tags();
-        $set_meta_tags->seo_array['title'] = "Artikelübersicht - Shop";
+        $set_meta_tags->seo_array['title'] = "Artikel&uuml;bersicht - Shop";
         $set_meta_tags->seo_array['description'] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
         $set_meta_tags->seo_array['keywords'] = "Lorem, ipsum, dolor, sit, amet, consectetuer, adipiscin, elit, Aenean commodo";
         $set_meta_tags->seo_array['index_allow'] = false;
@@ -20,11 +20,11 @@
                     <img src="https://picsum.photos/g/1920/450?image=6" alt="Startseite">
                 </div>
                 <?php include 'inc/inc-menu.php'; ?>
-                <h1>Artikelübersicht</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                    <br><a class="button" href="#">Button</a>
-                </p>
+                <div class="container">
+                    <h1>Artikel&uuml;bersicht</h1>
+                    <div class="row">
+                    </div>
+                </div>
             </div>
             <?php include 'inc/inc-footer.php'; ?>
         </div>

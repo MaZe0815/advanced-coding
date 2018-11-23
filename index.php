@@ -13,22 +13,22 @@
         ?>
     </head>
     <body>
-        <div class="container">
-            <?php include 'inc/inc-header.php'; ?>
-            <div class="content">
-                <div class="haeder_logo">
-                    <img src="https://picsum.photos/g/1920/450?image=0" alt="Startseite">
-                </div>
-                <?php include 'inc/inc-menu.php'; ?>
-                <h1>Startseite</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                    <br><a class="button" href="#">Button</a>
-                </p>
+
+        <?php include 'inc/inc-header.php'; ?>
+        <div class="content">
+            <div class="haeder_logo">
+                <img src="https://picsum.photos/g/1920/450?image=0" alt="Startseite">
             </div>
-            <?php include 'inc/inc-footer.php'; ?>
+            <?php include 'inc/inc-menu.php'; ?>
+            <div class="container">
+                <h1>Startseite</h1>
+                <div class="row">
+                </div>
+            </div>
         </div>
-        <script src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/js/js_functions.js" type="text/javascript"></script>
-        <?php include "inc/inc-debug-console.php"; ?>
-    </body>
+        <?php include 'inc/inc-footer.php'; ?>
+    </div>
+    <script src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/js/js_functions.js" type="text/javascript"></script>
+    <?php include "inc/inc-debug-console.php"; ?>
+</body>
 </html>

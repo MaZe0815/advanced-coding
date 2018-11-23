@@ -20,11 +20,11 @@
                     <img src="https://picsum.photos/g/1920/450?image=3" alt="Startseite">
                 </div>
                 <?php include 'inc/inc-menu.php'; ?>
-                <h1>Allgemeine Gesch&auml;ftsbedingungen</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                    <br><a class="button" href="#">Button</a>
-                </p>
+                <div class="container">
+                    <h1>Allgemeine Gesch&auml;ftsbedingungen</h1>
+                    <div class="row">
+                    </div>
+                </div>
             </div>
             <?php include 'inc/inc-footer.php'; ?>
         </div>
