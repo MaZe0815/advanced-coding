@@ -21,6 +21,10 @@ p {
 div.content {
     padding: 25px 25px 25px 25px;
     min-height: 100%;
+    width: 85%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div.content h1, h2, h3, h4, h5, h6 {
@@ -235,7 +239,7 @@ a.topnav-icons {
 @media (min-width: 576px) and (max-width: 767.98px) {
 
     div.content {
-        padding: 60px 25px 25px 25px;
+        padding: 20px 25px 25px 25px;
         min-height: 100%;
     }
 }
@@ -243,7 +247,7 @@ a.topnav-icons {
 @media (min-width: 768px) and (max-width: 991.98px) {
 
     div.content {
-        padding: 60px 25px 25px 25px;
+        padding: 20px 25px 25px 25px;
         min-height: 100%;
     }
 }
@@ -251,7 +255,7 @@ a.topnav-icons {
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
     div.content {
-        padding: 60px 25px 25px 25px;
+        padding: 20px 25px 25px 25px;
         min-height: 100%;
     }
 }
@@ -260,7 +264,7 @@ a.topnav-icons {
 @media (min-width: 1200px) {
 
     div.content {
-        padding: 60px 25px 25px 25px;
+        padding: 20px 25px 25px 25px;
         min-height: 100%;
     }
 }
