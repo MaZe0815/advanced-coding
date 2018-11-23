@@ -13,22 +13,22 @@
         ?>
     </head>
     <body>
-
-        <?php include 'inc/inc-header.php'; ?>
-        <div class="content">
-            <div class="haeder_logo">
-                <img src="https://picsum.photos/g/1920/450?image=0" alt="Startseite">
-            </div>
-            <?php include 'inc/inc-menu.php'; ?>
-            <div class="container">
-                <h1>Startseite</h1>
-                <div class="row">
+        <div class="container">
+            <?php include 'inc/inc-header.php'; ?>
+            <div class="content">
+                <div class="haeder_logo">
+                    <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/home.jpg" alt="Startseite">
+                </div>
+                <?php include 'inc/inc-menu.php'; ?>
+                <div class="container">
+                    <h1>Startseite</h1>
+                    <div class="row">
+                    </div>
                 </div>
             </div>
+            <?php include 'inc/inc-footer.php'; ?>
         </div>
-        <?php include 'inc/inc-footer.php'; ?>
-    </div>
-    <script src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/js/js_functions.js" type="text/javascript"></script>
-    <?php include "inc/inc-debug-console.php"; ?>
-</body>
+        <script src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/js/js_functions.js" type="text/javascript"></script>
+        <?php include "inc/inc-debug-console.php"; ?>
+    </body>
 </html>

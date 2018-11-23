@@ -17,7 +17,7 @@
             <?php include 'inc/inc-header.php'; ?>
             <div class="content">
                 <div class="haeder_logo">
-                    <img src="https://picsum.photos/g/1920/450?image=1" alt="Startseite">
+                    <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/legal.jpg" alt="Impressum">
                 </div>
                 <?php include 'inc/inc-menu.php'; ?>
                 <div class="container">
