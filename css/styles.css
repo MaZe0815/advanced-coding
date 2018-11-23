@@ -24,8 +24,8 @@ div.container {
 }
 
 div.content {
-    padding:10px;
-    padding-bottom:60px;
+    padding: 25px 25px 25px 25px;
+    min-height: 100%;
 }
 
 div.content h1, h2, h3, h4, h5, h6 {
@@ -140,13 +140,12 @@ div.header {
     letter-spacing: 1px;
     position: fixed;
     top: 0px;
-    overflow: hidden;
-    height: 44px;
+    min-height: 44px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .topnav a{
-    padding:10px 15px 9px 15px !important;
+    padding:10px 15px 9px 15px;
     color:#ffffff !important;
     text-decoration: none;
 }
@@ -166,6 +165,58 @@ a.topnav-icons {
     font-size: 20px !important;
     padding-top: 11px !important;
     padding-bottom: 13px !important;
+}
+
+@media (max-width: 400px) {
+
+    div.header {
+        font-size: 15px;
+    }
+
+    div.header .ac-right {
+        float: none !important;
+    }
+
+    div.header .ac-left {
+        float: none !important;
+    }
+
+    .topnav a {
+        padding: 12px 15px 9px 15px;
+        color: #ffffff !important;
+        text-decoration: none;
+    }
+
+    div.content {
+        padding: 60px 25px 25px 25px;
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+
+    div.header {
+        font-size: 15px;
+    }
+
+    div.header .ac-right {
+        float: none !important;
+    }
+
+    div.header .ac-left {
+        float: none !important;
+    }
+
+    .topnav a {
+        padding: 12px 15px 9px 15px;
+        color: #ffffff !important;
+        text-decoration: none;
+    }
+
+    div.content {
+        padding: 60px 25px 25px 25px;
+        min-height: 100%;
+    }
 }
 
 
@@ -214,6 +265,10 @@ div.footer {
         float: none !important;
     }
 
+    div.footer {
+        position: relative;
+    }
+
     div.footer.ac_card a {
         width: 100%;
         line-height: 0.4;
@@ -229,6 +284,10 @@ div.footer {
 
     .ac-left {
         float: none !important;
+    }
+
+    div.footer {
+        position: relative;
     }
 
     div.footer.ac_card a {
