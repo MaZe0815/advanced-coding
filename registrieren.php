@@ -74,9 +74,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <?php include 'inc/inc-footer.php'; ?>
-    <script src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/js/js_functions.js" type="text/javascript"></script>
-    <?php include "inc/inc-debug-console.php"; ?>
-</body>
+        <?php include 'inc/inc-footer.php'; ?>
+        <script src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/js/js_functions.js" type="text/javascript"></script>
+        <?php include "inc/inc-debug-console.php"; ?>
+    </body>
 </html>
