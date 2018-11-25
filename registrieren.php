@@ -24,6 +24,12 @@
                     <h1>Registrieren</h1>
                     <form role="form" method="post" action="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/registrieren" autocomplete="off">
                         <div class="row">
+                            <div class="col-12">
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.< Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-4">
                                 <label for="username">Benutzername</label><br>
                                 <input type="text" name="username" id="username" placeholder="Benutzername" value="<?php
@@ -44,7 +50,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <label for="pass">Passwort</label><br>
-                                <input type="pass" name="pass" id="pass" placeholder="Passwort" tabindex="4">
+                                <input type="password" name="pass" id="pass" placeholder="Passwort" tabindex="4">
                             </div>
                             <div class="col-4">
                                 <label for="pass_confirm">Passwort wiederholen</label><br>
