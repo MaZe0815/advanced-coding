@@ -1,15 +1,18 @@
 /* General and overall stylings */
-html, body {
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.5;
-    color:#222;
-    margin: 0px;
-    padding-left: auto;
-    padding-right: auto;
-    background-color: #ffffff;
-    position: relative;
-    min-height: 100%;
-    top: 0px;
 }
 
 p {
@@ -20,7 +23,7 @@ p {
 
 div.content {
     padding: 25px 25px 25px 25px;
-    min-height: 100%;
+    min-height: 800px;
     width: 85%;
     display: block;
     margin-left: auto;
@@ -48,96 +51,109 @@ div.content h1, h2, h3, h4, h5, h6 {
 }
 
 /* Simple grid system */
+.wrapper {
+    position: relative;
+}
+
+/* 100% width container */
 .container {
-    width: 100% !important;
-    margin: 0 auto;
-    padding: 0 0;
-    box-sizing: border-box;
-}
-
-.column,
-.columns {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    float: left;
-    box-sizing: border-box;
+    list-style: none;
 }
 
-/* For devices larger than 400px */
-@media (min-width: 400px) {
-
-    .container {
-        width: 85%;
-        padding: 0;
-    }
+/* Give `.wrapper` a maximum width and center it within its parent*/
+.wrapper {
+    margin: 0 auto;
+    max-width: 100%;
 }
 
-/* For devices larger than 550px */
-@media (min-width: 550px) {
-
-    .container {
-        width: 80%;
+/* Don’t honor column widths until viewport is at least 600px wide */
+@media (min-width: 600px) {
+    .row {
+        margin-right: -1.333%;
+        margin-left: -1.333%;
     }
 
-    .column,
-    .columns {
-        margin-left: 0%;
+    [class^="col-"],
+    [class*=" col-"]{
+        position: relative;
+        float: left;
+        padding-right: 1.333%;
+        padding-left: 1.333%;
+        min-height: 1px;
+        width: 100%;
     }
 
-    .column:first-child,
-    .columns:first-child {
+    /* Remove space between `.col-*` elements with `.no-gutter` class */
+    .row.no-gutter {
         margin-left: 0;
+        margin-right: 0;
     }
 
-    .one.column,
-    .one.columns                    { width: 4.66666666667%; }
-    .two.columns                    { width: 13.3333333333%; }
-    .three.columns                  { width: 22%;            }
-    .four.columns                   { width: 30.6666666667%; }
-    .five.columns                   { width: 39.3333333333%; }
-    .six.columns                    { width: 48%;            }
-    .seven.columns                  { width: 56.6666666667%; }
-    .eight.columns                  { width: 65.3333333333%; }
-    .nine.columns                   { width: 74.0%;          }
-    .ten.columns                    { width: 82.6666666667%; }
-    .eleven.columns                 { width: 91.3333333333%; }
-    .twelve.columns                 { width: 100%; margin-left: 0; }
+    .row.no-gutter [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
-    .one-third.column               { width: 30.6666666667%; }
-    .two-thirds.column              { width: 65.3333333333%; }
+    /* Column widths */
+    .col-1  { width: 8.333%;  }
+    .col-2  { width: 16.666%; }
+    .col-3  { width: 25%;     }
+    .col-4  { width: 33.333%; }
+    .col-5  { width: 41.666%; }
+    .col-6  { width: 50%;     }
+    .col-7  { width: 58.333%; }
+    .col-8  { width: 66.666%; }
+    .col-9  { width: 75%;     }
+    .col-10 { width: 83.333%; }
+    .col-11 { width: 91.666%; }
+    .col-12 { width: 100%;    }
 
-    .one-half.column                { width: 48%; }
+    /* Push & pull */
+    .push-1  { left: 8.333%;  }
+    .push-2  { left: 16.666%; }
+    .push-3  { left: 25%;     }
+    .push-4  { left: 33.333%; }
+    .push-5  { left: 41.666%; }
+    .push-6  { left: 50%;     }
+    .push-7  { left: 58.333%; }
+    .push-8  { left: 66.666%; }
+    .push-9  { left: 75%;     }
+    .push-10 { left: 83.333%; }
+    .push-11 { left: 91.666%; }
+    .push-12 { left: 100%;    }
 
-    /* Offsets */
-    .offset-by-one.column,
-    .offset-by-one.columns          { margin-left: 8.66666666667%; }
-    .offset-by-two.column,
-    .offset-by-two.columns          { margin-left: 17.3333333333%; }
-    .offset-by-three.column,
-    .offset-by-three.columns        { margin-left: 26%;            }
-    .offset-by-four.column,
-    .offset-by-four.columns         { margin-left: 34.6666666667%; }
-    .offset-by-five.column,
-    .offset-by-five.columns         { margin-left: 43.3333333333%; }
-    .offset-by-six.column,
-    .offset-by-six.columns          { margin-left: 52%;            }
-    .offset-by-seven.column,
-    .offset-by-seven.columns        { margin-left: 60.6666666667%; }
-    .offset-by-eight.column,
-    .offset-by-eight.columns        { margin-left: 69.3333333333%; }
-    .offset-by-nine.column,
-    .offset-by-nine.columns         { margin-left: 78.0%;          }
-    .offset-by-ten.column,
-    .offset-by-ten.columns          { margin-left: 86.6666666667%; }
-    .offset-by-eleven.column,
-    .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+    .pull-1  { right: 8.333%;  }
+    .pull-2  { right: 16.666%; }
+    .pull-3  { right: 25%;     }
+    .pull-4  { right: 33.333%; }
+    .pull-5  { right: 41.666%; }
+    .pull-6  { right: 50%;     }
+    .pull-7  { right: 58.333%; }
+    .pull-8  { right: 66.666%; }
+    .pull-9  { right: 75%;     }
+    .pull-10 { right: 83.333%; }
+    .pull-11 { right: 91.666%; }
+    .pull-12 { right: 100%;    }
+}
 
-    .offset-by-one-third.column,
-    .offset-by-one-third.columns    { margin-left: 34.6666666667%; }
-    .offset-by-two-thirds.column,
-    .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }
+/* Clear floats */
+.container:before,
+.container:after,
+.wrapper:before,
+.wrapper:after,
+.row:before,
+.row:after {
+    display: table;
+    content: " ";
+}
 
-    .offset-by-one-half.column,
-    .offset-by-one-half.columns     { margin-left: 52%; }
+.container:after,
+.wrapper:after,
+.row:after {
+    clear: both;
 }
 
 /* General layout stylings for frontend */
@@ -211,8 +227,8 @@ a.topnav-icons {
     }
 
     div.content {
+        width: 960px;
         padding: 90px 25px 25px 25px;
-        min-height: 100%;
     }
 }
 
@@ -249,40 +265,6 @@ a.topnav-icons {
         min-height: 100%;
     }
 }
-
-@media (min-width: 576px) and (max-width: 767.98px) {
-
-    div.content {
-        padding: 20px 25px 25px 25px;
-        min-height: 100%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-
-    div.content {
-        padding: 20px 25px 25px 25px;
-        min-height: 100%;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
-
-    div.content {
-        padding: 20px 25px 25px 25px;
-        min-height: 100%;
-    }
-}
-
-
-@media (min-width: 1200px) {
-
-    div.content {
-        padding: 20px 25px 25px 25px;
-        min-height: 100%;
-    }
-}
-
 
 div.haeder_logo {
     margin-top: 45px;
@@ -421,12 +403,75 @@ button,
     margin-bottom: 1rem;
 }
 
+/* Inputs */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    height: 38px;
+    padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
+textarea {
+    min-height: 65px;
+    padding-top: 6px;
+    padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border: 1px solid #33C3F0;
+    outline: 0; }
+label,
+legend {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: 600; }
+fieldset {
+    padding: 0;
+    border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+    display: inline; }
+label > .label-body {
+    display: inline-block;
+    margin-left: .5rem;
+    font-weight: normal; }
+
 /* Overall margins */
 input,
 textarea,
 select,
 fieldset {
     margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #bbb;
 }
 
 pre,
@@ -557,4 +602,38 @@ a {
 
 a:hover {
     color: #0FA0CE;
+}
+
+/* Overall Spacing */
+button,
+.button {
+    margin-bottom: 1rem;
+}
+
+input,
+textarea,
+select,
+fieldset {
+    margin-bottom: 1.5rem;
+}
+
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+    margin-bottom: 2.5rem;
+}
+
+/* Overall global clearing */
+.container:after,
+.row:after,
+.u-cf {
+    content: "";
+    display: table;
+    clear: both;
 }
