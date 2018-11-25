@@ -13,21 +13,25 @@
         ?>
     </head>
     <body>
-        <div class="container">
-            <?php include 'inc/inc-header.php'; ?>
-            <div class="content">
-                <div class="haeder_logo">
-                    <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/cart.jpg" alt="Warenkorb">
-                </div>
-                <?php include 'inc/inc-menu.php'; ?>
-                <div class="container">
+        <?php include 'inc/inc-header.php'; ?>
+        <div class="content">
+            <div class="haeder_logo">
+                <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/cart.jpg" alt="Warenkorb">
+            </div>
+            <?php include 'inc/inc-menu.php'; ?>
+            <div class="container">
+                <div class="wrapper">
                     <h1>Warenkorb</h1>
                     <div class="row">
+                        <div class="col-12">
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-            <?php include 'inc/inc-footer.php'; ?>
         </div>
+        <?php include 'inc/inc-footer.php'; ?>
         <script src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/js/js_functions.js" type="text/javascript"></script>
         <?php include "inc/inc-debug-console.php"; ?>
     </body>
