@@ -70,7 +70,7 @@ div.content h1, h2, h3, h4, h5, h6 {
 }
 
 /* Don’t honor column widths until viewport is at least 600px wide */
-@media (min-width: 600px) {
+@media (min-width: 1024px) {
     .row {
         margin-right: -1.333%;
         margin-left: -1.333%;
@@ -636,4 +636,109 @@ form {
     content: "";
     display: table;
     clear: both;
+}
+
+/* Artcile card */
+.card {
+    min-height: 350px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 15px;
+    margin-bottom: 55px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card img {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card hr {
+    margin-top: -30px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 1.1em;
+    height: 60px;
+    overflow: hidden;
+}
+
+.card .limited {
+    max-width: 250px;
+    height: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid rgba(0,0,0,0.2);
+    margin: 0 auto;
+}
+
+.card div.description {
+    height: 150px;
+}
+
+.card div.description p {
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.card div.product_sub {
+    height: 45px;
+}
+
+.card div.product_sub p.price {
+    font-weight: 600;
+    float: left;
+    text-decoration: underline;
+}
+
+.card div.product_sub button.add_to_cart {
+    position: relative;
+    bottom: 8px;
+    font-weight: 600;
+    float: right;
+}
+
+.card div.product_sub button.add_to_cart .fa {
+    font-weight: 600;
+}
+
+.card .manufacturer_platform {
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.card .manufacturer_platform  span{
+    font-weight: 600;
+}
+
+/* Pagination */
+ul.pagination {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-weight: 300;
+    list-style: none;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+ul.pagination li a.button.button-primary {
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.pagination_totals {
+    font-size: 12px;
+    margin-top: -35px;
+}
+
+.pagination_totals span {
+    font-weight: 600;
 }
