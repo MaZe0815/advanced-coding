@@ -742,3 +742,24 @@ ul.pagination li a.button.button-primary {
 .pagination_totals span {
     font-weight: 600;
 }
+
+/* Article flter */
+.article_col {
+    min-height: 1200px;
+}
+
+.article_col .card p {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.article_col .card label {
+    display: inline;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    float: right;
+    position: absolute;
+    left: 50px;
+}

@@ -12,7 +12,10 @@ class get_products {
     public $nextpage;
     public $previouspage;
     public $article_list = true;
-    private $product_limit = 8;
+    private $product_limit = 9;
+    public $filter_genre;
+    public $filter_console;
+    public $filter_pagination_adds;
 
     function __construct() {
 
@@ -32,6 +35,10 @@ class get_products {
     }
 
     function get_products() {
+
+        $this->filter_genre = $this->getv("g");
+        $this->filter_console = $this->getv("c");
+        $this->filter_pagination_adds = $this->gen_pagaination_param();
 
         if (strlen($this->conn->connect_error) === 0) {
 
@@ -55,11 +62,19 @@ class get_products {
             } else {
 
                 $this->calc_pagination();
+                if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                } else {
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                }
 
-                $sql_product = "SELECT id, img_url, product_name, description, price, pid, gid FROM acs_products order by id asc LIMIT " . $this->start . ", " . $this->product_limit;
                 $result_product = $this->conn->query($sql_product);
 
-                if ($result_product->num_rows >= 2) {
+                if ($result_product->num_rows >= 1) {
 
                     while ($row = $result_product->fetch_array(MYSQLI_ASSOC)) {
 
@@ -69,6 +84,8 @@ class get_products {
                     }
 
                     return $row_product;
+                } else {
+                    return false;
                 }
                 $this->conn->close();
             }
@@ -84,6 +101,18 @@ class get_products {
         return $row_platform;
     }
 
+    public function get_manufacturers_platforms() {
+
+        $sql_platforms = "SELECT acs_platforms.id AS platformID, acs_platforms.name AS platform, acs_manufacturers.name AS manufacturer FROM acs_platforms LEFT JOIN acs_manufacturers ON acs_manufacturers.id = acs_platforms.mid ORDER BY acs_manufacturers.name asc";
+        $result_platforms = $this->conn->query($sql_platforms);
+
+        while ($row = $result_platforms->fetch_array(MYSQLI_ASSOC)) {
+            $row_platforms[] = $row;
+        }
+
+        return $row_platforms;
+    }
+
     private function get_genre($gid) {
 
         $sql_genre = "SELECT name FROM acs_genres WHERE id = " . $gid . " LIMIT 1";
@@ -94,11 +123,32 @@ class get_products {
         return $row_genre;
     }
 
+    public function get_genres() {
+
+        $sql_genres = "SELECT id, name FROM acs_genres order by name asc";
+        $result_genres = $this->conn->query($sql_genres);
+
+        while ($row = $result_genres->fetch_array(MYSQLI_ASSOC)) {
+            $row_genres[] = $row;
+        }
+
+        return $row_genres;
+    }
+
     private function calc_pagination() {
 
         $this->start = ($this->curpage * $this->product_limit) - $this->product_limit;
 
-        $sql_product_pages = "SELECT * FROM acs_products";
+        if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
+            $sql_product_pages = "SELECT id FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ")";
+        } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
+            $sql_product_pages = "SELECT id FROM acs_products WHERE `pid` = " . $this->filter_console;
+        } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
+            $sql_product_pages = "SELECT id FROM acs_products WHERE `gid` = " . $this->filter_genre;
+        } else {
+            $sql_product_pages = "SELECT id FROM acs_products";
+        }
+
         $result_product_pages = $this->conn->query($sql_product_pages);
         $this->total_res = mysqli_num_rows($result_product_pages);
 
@@ -113,6 +163,26 @@ class get_products {
         $arr = preg_split("/[\s]+/", $str, $words + 1);
         $arr = array_slice($arr, $start, $words);
         return join(' ', $arr);
+    }
+
+    private function getv($key, $default = '', $data_type = '') {
+        $param = (isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default);
+
+        if (!is_array($param) && $data_type == 'int') {
+            $param = intval($param);
+        }
+
+        return $param;
+    }
+
+    private function gen_pagaination_param() {
+        if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
+            return $param_string = "&c=" . $this->filter_console . "&g=" . $this->filter_genre;
+        } else if (isset($this->filter_console) && !empty($this->filter_console)) {
+            return $param_string = "&c=" . $this->filter_console;
+        } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
+            return $param_string = "&g=" . $this->filter_genre;
+        }
     }
 
 }
