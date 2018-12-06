@@ -22,7 +22,7 @@
                 </p>
             </div>
             <div class="product_sub">
-                <p class="price"><?php echo number_format($products[$key]['price'], 2, '.', ''); ?> €</p>
+                <p class="price"><?php echo number_format($products[$key]['gross_price'], 2, '.', ''); ?> €</p>
                 <button class="add_to_cart button-primary">
                     <i class="fa fa-shopping-cart"></i>
                 </button>

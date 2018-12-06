@@ -50,7 +50,7 @@ if ($products !== false) {
                     </p>
                 </div>
                 <div class="product_sub">
-                    <p class="price"><?php echo number_format($products[$key]['price'], 2, '.', ''); ?> &euro;</p>
+                    <p class="price"><?php echo number_format($products[$key]['gross_price'], 2, '.', ''); ?> &euro;</p>
                     <button class="add_to_cart button-primary">
                         <i class="fa fa-shopping-cart"></i>
                     </button>

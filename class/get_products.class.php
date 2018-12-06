@@ -16,6 +16,7 @@ class get_products {
     public $filter_genre;
     public $filter_console;
     public $filter_pagination_adds;
+    private $value_vat = 19;
 
     function __construct() {
 
@@ -62,6 +63,8 @@ class get_products {
                     $row_product[0] = $result_product->fetch_array(MYSQLI_ASSOC);
                     $row_product[0]['manucafturer_platform'] = $this->get_manufacturer_platform($row_product[0]['pid']);
                     $row_product[0]['genre'] = $this->get_genre($row_product[0]['gid']);
+                    $row_product[0]['gross_price'] = $this->calc_vat($row_product[0]['price']);
+
                     return $row_product;
                 } else {
                     header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/artikeluebersicht');
@@ -88,6 +91,7 @@ class get_products {
 
                         $row['manucafturer_platform'] = $this->get_manufacturer_platform($row['pid']);
                         $row['genre'] = $this->get_genre($row['gid']);
+                        $row['gross_price'] = $this->calc_vat($row['price']);
                         $row_product[] = $row;
                     }
 
@@ -164,6 +168,12 @@ class get_products {
         $this->startpage = 1;
         $this->nextpage = $this->curpage + 1;
         $this->previouspage = $this->curpage - 1;
+    }
+
+    public function calc_vat($price) {
+
+        $gross_price = $price + ( ( $price / 100 ) * $this->value_vat );
+        return $gross_price;
     }
 
     public function word_cut_string($str, $start = 0, $words = 15) {
