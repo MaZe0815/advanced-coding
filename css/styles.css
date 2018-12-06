@@ -691,20 +691,29 @@ form {
     height: 45px;
 }
 
-.card div.product_sub p.price {
+.card div.product_sub p span.price {
     font-weight: 600;
     float: left;
     text-decoration: underline;
 }
 
-.card div.product_sub button.add_to_cart {
+.card div.product_sub p span.gross {
+    font-size: 0.8em;
+    font-weight: 300;
+    text-decoration: none;
+    color: #5f5f5f;
+}
+
+.card div.product_sub button.add_to_cart,
+.card div.product_sub a.add_to_cart {
     position: relative;
-    bottom: 8px;
+    bottom: 80px;
     font-weight: 600;
     float: right;
 }
 
-.card div.product_sub button.add_to_cart .fa {
+.card div.product_sub button.add_to_cart .fa,
+.card div.product_sub a.add_to_cart .fa {
     font-weight: 600;
 }
 

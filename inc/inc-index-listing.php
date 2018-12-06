@@ -25,7 +25,10 @@ if ($products !== false) {
                     </p>
                 </div>
                 <div class="product_sub">
-                    <p class="price"><?php echo number_format($products[$key]['gross_price'], 2, ',', '.'); ?> &euro;</p>
+                    <p>
+                        <span class="price"><?php echo number_format($products[$key]['gross_price'], 2, ',', '.'); ?> &euro;</span><br>
+                        <span class="gross">inkl. Mwst</span>
+                    </p>
                     <a class="add_to_cart button button-primary" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/artikeluebersicht?pid=' . $products[$key]['id']; ?>" target="_self">
                         <i class="fa fa-share"></i>
                     </a>
