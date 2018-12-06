@@ -43,7 +43,7 @@ if (isset($_GET['pid']) && strlen($_GET['pid'])) {
                 <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/articles.jpg" alt="Artikel&uuml;bersicht">
             </div>
             <?php include 'inc/inc-menu.php'; ?>
-            <div class="container">
+            <div class="container" id="product-listing">
                 <div class="wrapper">
                     <?php if (isset($get_products->article_list) && $get_products->article_list === true) { ?>
                         <h1>Artikel&uuml;bersicht</h1>

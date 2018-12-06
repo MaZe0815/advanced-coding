@@ -12,7 +12,7 @@ class get_products {
     public $nextpage;
     public $previouspage;
     public $article_list = true;
-    private $product_limit = 9;
+    public $product_limit = 9;
     public $filter_genre;
     public $filter_console;
     public $filter_pagination_adds;
@@ -34,7 +34,15 @@ class get_products {
         }
     }
 
-    function get_products() {
+    public function get_products($rand = false) {
+
+        if ($rand === true) {
+
+            $ordering = "ORDER BY RAND()";
+        } else {
+
+            $ordering = "ORDER BY product_name asc";
+        }
 
         $this->filter_genre = $this->getv("g");
         $this->filter_console = $this->getv("c");
@@ -63,13 +71,13 @@ class get_products {
 
                 $this->calc_pagination();
                 if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } else {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products ORDER BY product_name asc LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 }
 
                 $result_product = $this->conn->query($sql_product);
@@ -158,7 +166,7 @@ class get_products {
         $this->previouspage = $this->curpage - 1;
     }
 
-    function word_cut_string($str, $start = 0, $words = 15) {
+    public function word_cut_string($str, $start = 0, $words = 15) {
 
         $arr = preg_split("/[\s]+/", $str, $words + 1);
         $arr = array_slice($arr, $start, $words);
@@ -166,6 +174,7 @@ class get_products {
     }
 
     private function getv($key, $default = '', $data_type = '') {
+
         $param = (isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default);
 
         if (!is_array($param) && $data_type == 'int') {
@@ -176,12 +185,22 @@ class get_products {
     }
 
     private function gen_pagaination_param() {
+
+        $current_page_v = $this->getv('p');
+
+        if (is_array($current_page_v)) {
+            $param_string = "?p=";
+        }
+
         if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
-            return $param_string = "&c=" . $this->filter_console . "&g=" . $this->filter_genre;
+
+            return $param_string = "&c=" . $this->filter_console . "&g=" . $this->filter_genre . "#product-listing";
         } else if (isset($this->filter_console) && !empty($this->filter_console)) {
-            return $param_string = "&c=" . $this->filter_console;
+
+            return $param_string = "&c=" . $this->filter_console . "#product-listing";
         } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
-            return $param_string = "&g=" . $this->filter_genre;
+
+            return $param_string = "&g=" . $this->filter_genre . "#product-listing";
         }
     }
 
