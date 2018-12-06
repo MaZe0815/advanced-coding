@@ -1,4 +1,13 @@
-<?php require_once('config.php'); ?>
+<?php
+require_once('config.php');
+
+$get_products = new get_products();
+$get_products->product_limit = 16;
+
+$products = $get_products->get_products();
+$product_genres = $get_products->get_genres();
+$product_platforms = $get_products->get_manufacturers_platforms();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,10 +32,7 @@
                 <div class="wrapper">
                     <h1>Startseite</h1>
                     <div class="row">
-                        <div class="col-12">
-
-
-                        </div>
+                        <?php include 'inc/inc-index-listing.php'; ?>
                     </div>
                 </div>
             </div>
