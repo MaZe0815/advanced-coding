@@ -63,3 +63,22 @@ function insertParam(key, value) {
         document.location.search = kvp.join('&');
     }
 }
+
+function asyn_search(path, target, search) {
+
+    console.log(search);
+
+    var xmlhttp;
+    xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+            document.getElementById(target).innerHTML = xmlhttp.response;
+        }
+    }
+    xmlhttp.open('POST', path, true);
+    xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xmlhttp.send('s=' + search);
+}

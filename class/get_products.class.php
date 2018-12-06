@@ -104,7 +104,7 @@ class get_products {
         }
     }
 
-    private function get_manufacturer_platform($pid) {
+    public function get_manufacturer_platform($pid) {
 
         $sql_platform = "SELECT acs_manufacturers.name AS manufacturer, acs_platforms.name AS platform FROM acs_platforms LEFT JOIN acs_manufacturers ON acs_manufacturers.id = acs_platforms.mid WHERE acs_platforms.id = " . $pid;
         $result_platform = $this->conn->query($sql_platform);
@@ -125,7 +125,7 @@ class get_products {
         return $row_platforms;
     }
 
-    private function get_genre($gid) {
+    public function get_genre($gid) {
 
         $sql_genre = "SELECT name FROM acs_genres WHERE id = " . $gid . " LIMIT 1";
         $result_genre = $this->conn->query($sql_genre);
