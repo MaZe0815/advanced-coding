@@ -787,22 +787,80 @@ ul.pagination li a.button.button-primary {
     margin-left: 10px;
 }
 
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-@media screen and (max-width: 600px) {
-    .topnav a, .topnav input[type=text] {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-    }
-    .topnav input[type=text] {
-        border: 1px solid #ccc;
-    }
+/* Inline search */
+div.row div#inline_search.inline_search {
+    display: none;
+    width: 438px;
+    float: right;
+    position: fixed;
+    right: 0;
+    background-color: #ffffff;
+    overflow: hidden;
+    z-index: 10000;
+    top: 45px;
+    padding: 20px;
+    border-left: 1px solid #5f5f5f;
+    border-bottom: 1px solid #5f5f5f;
+    border-top: 0px;
+    border-right: 0px;
 }
 
-/* Inline search */
-.inline_search {
-    padding-top: 85px;
+div.row div#inline_search.inline_search div.card {
+    min-height: 100px !important;
+    box-shadow: none;
+    height: auto;
+    margin-bottom: 0px;
+}
+
+div#inline_search.inline_search div.card div h2 {
+    font-size: 0.7em;
+    overflow: hidden;
+    height: auto !important;
+}
+
+div#inline_search.inline_search div.card div.product_sub p span.price {
+    font-size: 0.7em;
+    margin-top: -38px;
+}
+
+div#inline_search.inline_search div.card div.product_sub a.add_to_cart.button.button-primary {
+    position: relative;
+    bottom: 90px;
+    font-weight: 600;
+    float: right;
+}
+
+div#inline_search.inline_search div.card div.product_sub {
+    border-width: 0;
+    border-top-width: 0px;
+    border-top-width: 0px;
+    height: 0px;
+}
+
+div#inline_search.inline_search hr {
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+}
+
+div#inline_search.inline_search a.close_inline_search,
+div#inline_search.inline_search a.close_inline_search:hover,
+div#inline_search.inline_search a.close_inline_search:hover:active {
+    float: right;
+    position: fixed;
+    right: 15px;
+    z-index: 10001;
+    top: 55px;
+    color: red;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+
+    .topnav input[type=text] {
+        visibility: hidden;
+    }
+
+    div#inline_search.inline_search {
+        visibility: hidden;
+    }
 }

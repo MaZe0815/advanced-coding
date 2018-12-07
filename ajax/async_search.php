@@ -2,7 +2,7 @@
 
 require_once('../config.php');
 
-if (isset($_POST['s'])) {
+if (isset($_POST['s']) && !empty($_POST['s'])) {
 
     $search_products = new search_products();
     $search_products->product_limit = 6;
@@ -14,4 +14,6 @@ if (isset($_POST['s'])) {
     header('Content-type: application/json');
     header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
     echo json_encode($products);
+} else {
+    
 }

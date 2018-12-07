@@ -1,4 +1,4 @@
-/* Global display function for shopping car and inline search */
+/* Global display function for shopping cart and inline search */
 function display_function(id, cid) {
 
     var display_id = id;
@@ -25,18 +25,20 @@ function display_function(id, cid) {
     }
 }
 
+/* Global filter function for get params */
 function filter_function(c_m, id) {
 
     if (c_m === "g") {
-        insertParam("g", id);
+        insert_param("g", id);
     }
 
     if (c_m === "p") {
-        insertParam("c", id);
+        insert_param("c", id);
     }
 }
 
-function insertParam(key, value) {
+/* Global insert function for get params */
+function insert_param(key, value) {
 
     key = escape(key);
     value = escape(value);
@@ -64,21 +66,84 @@ function insertParam(key, value) {
     }
 }
 
+/* Asynchronious inline search function for product */
 function asyn_search(path, target, search) {
 
-    console.log(search);
+    var len = document.getElementById('input_inline_search').value.length;
 
-    var xmlhttp;
-    xmlhttp = new XMLHttpRequest();
+    if (len != 0 && len >= 5) {
 
-    xmlhttp.onreadystatechange = function () {
+        const markup = '<div class="card"><div><h2>###product_name####</h2></div><div class="manufacturer_platform"><p class="manufacturer_platform"> Plattform: <span>###platform####</span><br> Genre: <span>###genre####</span><br></p></div><div class="product_sub"><p><span class="price">###price#### inkl. Mwst</span></p><a class="add_to_cart button button-primary" href="###base_url####/artikeluebersicht?pid=###product_id####" target="_self"><i class="fa fa-share"></i></a></div></div><hr>';
 
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var d = document.getElementById(target);
+        d.style.display = "block";
 
-            document.getElementById(target).innerHTML = xmlhttp.response;
+        if (d.style.display === "none") {
+            d.style.display = "block";
         }
+
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+                if (xmlhttp.responseText !== "false") {
+
+                    inline_search_results.innerHTML = "";
+
+                    products = JSON.parse(xmlhttp.responseText);
+
+                    for (var key in products) {
+                        if (products.hasOwnProperty(key)) {
+
+                            var product_markup = markup;
+                            product_markup = markup.replace('###product_name####', products[key]['product_name']);
+
+                            gross_price = new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(products[key]['gross_price']);
+
+                            var find = ["###product_name####",
+                                "###base_url####", "###price####",
+                                "###product_id####",
+                                "###platform####",
+                                "###genre####"];
+
+                            var replace = [
+                                products[key]['product_name'],
+                                csrfObject.baseURL,
+                                gross_price,
+                                products[key]['id'],
+                                products[key]['manucafturer_platform']['manufacturer'] + " " + products[key]['manucafturer_platform']['platform'],
+                                products[key]['genre']['name']
+                            ];
+
+                            product_markup = replace_string(product_markup, find, replace);
+
+                            inline_search_results.innerHTML += product_markup;
+                        }
+                    }
+                } else {
+
+                    d.style.display = "none";
+                }
+            }
+        }
+
+        xmlhttp.open('POST', path, true);
+        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xmlhttp.send('s=' + search);
+    } else if (len == 0 || len < 5) {
+
+        var d = document.getElementById(target);
+        d.style.display = "none";
     }
-    xmlhttp.open('POST', path, true);
-    xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xmlhttp.send('s=' + search);
+}
+
+/* String replace function for inline search markup */
+function replace_string(str, find, replace) {
+    for (var i = 0; i < find.length; i++) {
+        str = str.replace(new RegExp(find[i], 'gi'), replace[i]);
+    }
+    return str;
 }
