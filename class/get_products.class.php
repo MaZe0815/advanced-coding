@@ -17,6 +17,7 @@ class get_products {
     public $filter_console;
     public $filter_pagination_adds;
     private $value_vat = 19;
+    private $cover_dir = "img/covers";
 
     function __construct() {
 
@@ -64,6 +65,7 @@ class get_products {
                     $row_product[0]['manucafturer_platform'] = $this->get_manufacturer_platform($row_product[0]['pid']);
                     $row_product[0]['genre'] = $this->get_genre($row_product[0]['gid']);
                     $row_product[0]['gross_price'] = $this->calc_vat($row_product[0]['price']);
+                    $row_product[0]['rand_image'] = $this->random_pic();
 
                     return $row_product;
                 } else {
@@ -92,6 +94,7 @@ class get_products {
                         $row['manucafturer_platform'] = $this->get_manufacturer_platform($row['pid']);
                         $row['genre'] = $this->get_genre($row['gid']);
                         $row['gross_price'] = $this->calc_vat($row['price']);
+                        $row['rand_image'] = $this->random_pic();
                         $row_product[] = $row;
                     }
 
@@ -211,6 +214,24 @@ class get_products {
         } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
 
             return $param_string = "&g=" . $this->filter_genre . "#product-listing";
+        }
+    }
+
+    private function random_pic() {
+
+        $arrImage = array();
+        $dir = $this->cover_dir; # Directory containing images
+
+        if (is_dir($dir)) {
+
+            $arrImage = glob($dir . '/*.jpg');
+
+            if (count($arrImage) > 0) {
+
+                return $arrImage[array_rand($arrImage)];
+            } else {
+                return "https://via.placeholder.com/350x408";
+            }
         }
     }
 

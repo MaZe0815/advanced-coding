@@ -2,7 +2,7 @@
     ?>
     <div class="col-4">
         <div class="card">
-            <img src="<?php echo $products[$key]['img_url']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
+            <img src="../<?php echo $products[$key]['rand_image']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
         </div>
     </div>
     <div class="col-8">
