@@ -148,3 +148,10 @@ function replace_string(str, find, replace) {
     }
     return str;
 }
+
+/* Simple image replacement for article details */
+function show_large(srcLarge) {
+
+    document.getElementById("large_detail").src = srcLarge;
+    return false;
+}

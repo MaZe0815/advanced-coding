@@ -65,7 +65,10 @@ class get_products {
                     $row_product[0]['manucafturer_platform'] = $this->get_manufacturer_platform($row_product[0]['pid']);
                     $row_product[0]['genre'] = $this->get_genre($row_product[0]['gid']);
                     $row_product[0]['gross_price'] = $this->calc_vat($row_product[0]['price']);
-                    $row_product[0]['rand_image'] = $this->random_pic();
+                    $row_product[0]['rand_image'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
+                    $row_product[0]['rand_image_1'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
+                    $row_product[0]['rand_image_2'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
+                    $row_product[0]['rand_image_3'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
 
                     return $row_product;
                 } else {
@@ -217,7 +220,7 @@ class get_products {
         }
     }
 
-    private function random_pic() {
+    public function random_pic() {
 
         $arrImage = array();
         $dir = $this->cover_dir; # Directory containing images

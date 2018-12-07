@@ -679,7 +679,7 @@ form {
 }
 
 .card div.description {
-    height: 150px;
+    min-height: 150px;
 }
 
 .card div.description p {
@@ -863,4 +863,34 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
     div#inline_search.inline_search {
         visibility: hidden;
     }
+}
+
+/* Image slides replacement */
+#slideshow {
+    min-height: 130px;
+}
+
+#slideshow a:hover img {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+}
+
+#slideshow a figure img {
+    float: left;
+    display: block;
+    margin-right: 10px;
+    border: none;
+    max-width: 80px;
+    height: auto;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.2);
+    -webkit-transition: -webkit-transform .2s ease-in-out;
+    transition: -webkit-transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
+    transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+}
+
+#slideshow a:hover img {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
 }

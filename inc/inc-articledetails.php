@@ -2,7 +2,24 @@
     ?>
     <div class="col-4">
         <div class="card">
-            <img src="../<?php echo $products[$key]['rand_image']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
+            <img src="<?php echo $products[$key]['rand_image']; ?>" alt="<?php echo $products[$key]['product_name']; ?>" id="large_detail">
+            <div id="slideshow">
+                <a onclick="show_large('<?php echo $products[$key]['rand_image_1']; ?>');">
+                    <figure>
+                        <img src="<?php echo $products[$key]['rand_image_1']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
+                    </figure>
+                </a>
+                <a onclick="show_large('<?php echo $products[$key]['rand_image_2']; ?>');">
+                    <figure>
+                        <img src="<?php echo $products[$key]['rand_image_2']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
+                    </figure>
+                </a>
+                <a onclick="show_large('<?php echo $products[$key]['rand_image_3']; ?>');">
+                    <figure>
+                        <img src="<?php echo $products[$key]['rand_image_3']; ?>"  alt="<?php echo $products[$key]['product_name']; ?>">
+                    </figure>
+                </a>
+            </div>
         </div>
     </div>
     <div class="col-8">
