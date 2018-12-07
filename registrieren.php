@@ -18,7 +18,6 @@
             <div class="haeder_logo">
                 <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/register-login.jpg" alt="Registrieren">
             </div>
-            <?php include 'inc/inc-menu.php'; ?>
             <div class="container">
                 <div class="wrapper">
                     <h1>Registrieren</h1>

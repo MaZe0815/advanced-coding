@@ -27,7 +27,7 @@ class search_products extends get_products {
 
         if (strlen($this->conn->connect_error) === 0) {
 
-            $sql_product = "SELECT id, product_name, price, pid, gid FROM acs_products WHERE (product_name LIKE '%" . $this->search_str . "%' OR description LIKE '%" . $this->search_str . "%') LIMIT " . $this->product_limit;
+            $sql_product = "SELECT id, product_name, price, pid, gid FROM acs_products WHERE (product_name LIKE '%" . $this->search_str . "' OR description LIKE '%" . $this->search_str . "') LIMIT " . $this->product_limit;
             $result_product = $this->conn->query($sql_product);
 
             if ($result_product->num_rows === 1) {

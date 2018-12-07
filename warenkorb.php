@@ -13,7 +13,6 @@
         ?>
     </head>
     <body>
-        <?php include 'inc/inc-header.php'; ?>
         <div class="content">
             <div class="haeder_logo">
                 <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/cart.jpg" alt="Warenkorb">

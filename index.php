@@ -27,7 +27,6 @@ $product_platforms = $get_products->get_manufacturers_platforms();
             <div class="haeder_logo">
                 <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/home.jpg" alt="Startseite">
             </div>
-            <?php include 'inc/inc-menu.php'; ?>
             <div class="container">
                 <div class="wrapper">
                     <h1>Startseite</h1>

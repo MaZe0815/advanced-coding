@@ -18,7 +18,6 @@
             <div class="haeder_logo">
                 <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/legal.jpg" alt="Allgemeine Gesch&auml;ftsbedingungen">
             </div>
-            <?php include 'inc/inc-menu.php'; ?>
             <div class="container">
                 <div class="wrapper">
                     <div class="row">
