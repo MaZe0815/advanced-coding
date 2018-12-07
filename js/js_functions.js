@@ -76,11 +76,7 @@ function asyn_search(path, target, search) {
         const markup = '<div class="card"><div><h2>###product_name####</h2></div><div class="manufacturer_platform"><p class="manufacturer_platform"> Plattform: <span>###platform####</span><br> Genre: <span>###genre####</span><br></p></div><div class="product_sub"><p><span class="price">###price#### inkl. Mwst</span></p><a class="add_to_cart button button-primary" href="###base_url####/artikeluebersicht?pid=###product_id####" target="_self"><i class="fa fa-share"></i></a></div></div><hr>';
 
         var d = document.getElementById(target);
-        d.style.display = "block";
-
-        if (d.style.display === "none") {
-            d.style.display = "block";
-        }
+        d.style.display = "none";
 
         var xmlhttp;
         xmlhttp = new XMLHttpRequest();
@@ -92,6 +88,7 @@ function asyn_search(path, target, search) {
                 if (xmlhttp.responseText !== "false") {
 
                     inline_search_results.innerHTML = "";
+                    d.style.display = "none";
 
                     products = JSON.parse(xmlhttp.responseText);
 
@@ -122,6 +119,10 @@ function asyn_search(path, target, search) {
 
                             inline_search_results.innerHTML += product_markup;
                         }
+                    }
+
+                    if (d.style.display === "none") {
+                        d.style.display = "block";
                     }
                 } else {
 
