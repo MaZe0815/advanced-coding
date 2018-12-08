@@ -29,4 +29,3 @@
     </div>
 </div>
 <?php include 'inc/inc-inline-search.php'; ?>
-<?php include 'inc/inc-cart.php'; ?>

@@ -55,10 +55,11 @@ if ($products !== false) {
                         <span class="gross">inkl. Mwst</span>
                     </p>
                     <form action="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/warenkorb" method="post">
+                        <input type="hidden" value="<?php echo $products[$key]['id']; ?>">
                         <button class="add_to_cart button-primary">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
-                        <input type="number" name="quantity" min="1" max="5" readonly="readonly" value="1">
+                        <input type="number" name="quantity" min="1" max="5" value="1">
                     </form>
                 </div>
             </div>

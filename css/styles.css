@@ -30,6 +30,13 @@ div.content {
     margin-right: auto;
 }
 
+div.container h1:first-of-type {
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    letter-spacing: 5px;
+    text-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+
 div.content h1, h2, h3, h4, h5, h6 {
     color: #6cf;
     font-family: 'Montserrat', sans-serif;
@@ -736,8 +743,8 @@ form {
 
 /* Pagination */
 ul.pagination {
-    margin-top: 25px;
     margin-bottom: 25px;
+    margin-left: 17px;
     font-weight: 300;
     list-style: none;
 }
@@ -754,6 +761,7 @@ ul.pagination li a.button.button-primary {
 .pagination_totals {
     font-size: 12px;
     margin-top: -35px;
+    margin-left: 17px;
 }
 
 .pagination_totals span {
