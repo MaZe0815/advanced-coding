@@ -901,6 +901,7 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 #slideshow a:hover img {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
+
 }
 
 /* Cart */
@@ -1073,3 +1074,4 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
         min-width:100%;
     }
 }
+
