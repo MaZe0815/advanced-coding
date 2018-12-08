@@ -717,6 +717,14 @@ form {
     font-weight: 600;
 }
 
+.card div.product_sub input[type="number"] {
+    width: 65px;
+    position: relative;
+    bottom: 80px;
+    float: right;
+    margin-right: 5px;
+}
+
 .card .manufacturer_platform {
     font-size: 12px;
     margin-bottom: 8px;
@@ -893,4 +901,175 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 #slideshow a:hover img {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
+}
+
+/* Cart */
+
+.content.cart .card {
+    min-height: 145px;
+}
+
+.content.cart .card .limited {
+    float: left;
+}
+
+.content.cart .card .cart_details {
+    float: right;
+    width: 75%;
+    padding-left: 25px;
+}
+
+.content.cart .card .cart_details .del_cart_item {
+    float: right;
+    right: 15px;
+    z-index: 10001;
+    top: 55px;
+    color: red;
+    cursor: pointer;
+}
+
+.content.cart .card .cart_details  h2 {
+    font-size: 0.8em;
+    height: auto;
+    margin-top: 0.617px;
+}
+
+.content.cart .card .cart_details .manufacturer_platform p {
+    height: auto;
+}
+
+.content.cart .card .cart_details .product_sub {
+    margin-top: -30px;
+    font-size: 0.9em;
+}
+
+.content.cart .card .cart_details .product_sub p span {
+    float: none;
+}
+
+.content.cart .card .cart_details .product_sub .add_to_cart {
+    position: relative;
+    bottom: 80px;
+    font-weight: 600;
+    float: right;
+}
+
+.content.cart .card .cart_details .product_sub input[type="number"] {
+    width: 65px;
+    position: relative;
+    bottom: 80px;
+    float: right;
+    margin-right: 5px;
+}
+
+@media (max-width: 1280px) {
+
+    .content.cart .card .limited {
+        display: none;
+    }
+
+    .content.cart .card .cart_details {
+        float: right;
+        width: 100% !important;
+        padding-left: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content.cart .card .cart_details .product_sub input[type="number"],
+    .content.cart .card .cart_details .product_sub .add_to_cart {
+        display: none;
+    }
+}
+
+.content.cart .card.cart_amounts {
+    min-height: 90px;
+    margin-top: -60px;
+}
+
+.content.cart .card.cart_amounts .checkout_buttons {
+    margin-top: 10px;
+    float: left;
+}
+
+.content.cart .card.cart_amounts p {
+    margin-bottom: 0.2rem;
+    float: right;
+    text-align: right;
+}
+
+@media (max-width: 1030px) {
+    .content.cart .card.cart_amounts {
+        height: 200px;
+        margin-top: -60px;
+    }
+
+    .content.cart .card.cart_amounts .checkout_buttons {
+        text-align: center;
+        float: none;
+    }
+
+    .content.cart .card.cart_amounts p {
+        float: none;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .content.cart .card.cart_amounts {
+        height: 250px;
+        margin-top: -20px;
+    }
+}
+
+.content.cart .card.cart_amounts p span {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.content.cart .card.cart_amounts p span.gross {
+    font-size: 0.8em;
+    font-weight: 300;
+    text-decoration: none;
+    color: #5f5f5f;
+}
+
+/* registrieren */
+.eingabefeld {
+    width:100%;
+}
+.zeilenwrapper {
+    padding-left:0.5em;
+    padding-right:0.5em;
+    padding-top:0.5em;
+    padding-bottom:0em;
+    max-width:550px;
+}
+.zellelinks {
+    display:inline-block;
+    min-width:200px;
+    float:left;
+}
+.zellerechts {
+    display:inline-block;
+    min-width:300px;
+    float:left;
+}
+.fehler	{
+    border:2px solid red;
+}
+.fehlerzelle {
+    display:inline-block;
+    width:100%;
+    color:red;
+}
+@media screen and (max-width: 515px) {
+    .platzhalter {
+        display:none;
+    }
+}
+@media screen and (max-width: 300px) {
+    .zellerechts, .zellerechts {
+        min-width:100%;
+    }
 }
