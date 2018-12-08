@@ -54,9 +54,12 @@ if ($products !== false) {
                         <span class="price"><?php echo number_format($products[$key]['gross_price'], 2, ',', '.'); ?> &euro;</span><br>
                         <span class="gross">inkl. Mwst</span>
                     </p>
-                    <button class="add_to_cart button-primary">
-                        <i class="fa fa-shopping-cart"></i>
-                    </button>
+                    <form action="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/warenkorb" method="post">
+                        <button class="add_to_cart button-primary">
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <input type="number" name="quantity" min="1" max="5" readonly="readonly" value="1">
+                    </form>
                 </div>
             </div>
         </div>
@@ -64,5 +67,5 @@ if ($products !== false) {
     }
 } else {
     ?>
-    <p>Leider konntne zu Ihrer Suchanfrage keine Ergebnisse gefunden werden!</p>
+    <p>Leider konnten zu Ihrer Suchanfrage bzw. zur Ihrer Filterung keine Ergebnisse ermittelt werden!</p>
 <?php } ?>
