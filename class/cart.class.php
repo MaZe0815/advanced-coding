@@ -36,14 +36,9 @@ class cart extends get_products {
         $sql_is_set = "SELECT id FROM acs_orders WHERE item = " . $id . " AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "' LIMIT 1";
         $result_is_set = $this->conn->query($sql_is_set);
 
-        echo $result_is_set->num_rows;
-
-        print_r($result_is_set->num_rows);
-
         if ($result_is_set->num_rows > 0) {
             $sql_update = "UPDATE acs_orders SET amount = " . $quantity . ", date_cart =  now() WHERE item = " . $id . " AND order_number = '" . $_SESSION['order']['order_number'] . "' LIMIT 1";
             $this->conn->query($sql_update);
-            echo $sql_update;
         } else {
             $sql_insert = "INSERT INTO " . DB_TABLE_NAME . " acs_orders (id, order_number, item, price, amount, status, date_cart) VALUES ('', '" . $_SESSION['order']['order_number'] . "', '" . $id . "', '', '" . $quantity . "', '" . $this->order_status . "',  now())";
             $this->conn->query($sql_insert);
