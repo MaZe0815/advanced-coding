@@ -2,6 +2,18 @@
 require_once('config.php');
 
 $cart = new cart();
+$products = $cart->get_cart();
+$cart->calc_cart_amounts();
+
+if (isset($_POST['id']) && strlen($_POST['id']) && isset($_POST['quantity']) && strlen($_POST['quantity'])) {
+
+    $cart->add_to_cart($_POST['id'], $_POST['quantity']);
+} elseif (isset($_GET['da']) && strlen($_GET['da']) && $_GET['da'] === "true") {
+
+    $cart->delete_cart();
+} elseif (isset($_GET['d']) && strlen($_GET['d'])) {
+    $cart->delete_cart($_GET['d']);
+}
 ?>
 <!DOCTYPE html>
 <html>

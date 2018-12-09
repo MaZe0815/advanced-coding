@@ -54,8 +54,8 @@ if ($products !== false) {
                         <span class="price"><?php echo number_format($products[$key]['gross_price'], 2, ',', '.'); ?> &euro;</span><br>
                         <span class="gross">inkl. Mwst</span>
                     </p>
-                    <form action="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/warenkorb" method="post">
-                        <input type="hidden" value="<?php echo $products[$key]['id']; ?>">
+                    <form action="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/warenkorb/" method="post">
+                        <input type="hidden" name="id" value="<?php echo $products[$key]['id']; ?>">
                         <button class="add_to_cart button-primary">
                             <i class="fa fa-shopping-cart"></i>
                         </button>

@@ -20,7 +20,9 @@
                                 <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "registrieren.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/registrieren">Registrieren</a>
                             <?php } ?>
                             <input type="text" placeholder="Ihr Suchbegriff..." id="input_inline_search" onkeyup="asyn_search(csrfObject.baseURL + '/ajax/async_search/', 'inline_search', this.value);">
-                            <a class="topnav-icons fa fa-shopping-cart ac-bar-item ac-button <?php echo (SCRIPT_NAME === "warenkorb.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/warenkorb"></a>
+                            <?php if (isset($_SESSION['order'])) { ?>
+                                <a class="topnav-icons fa fa-shopping-cart ac-bar-item ac-button <?php echo (SCRIPT_NAME === "warenkorb.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/warenkorb"></a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

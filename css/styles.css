@@ -34,7 +34,6 @@ div.container h1:first-of-type {
     margin-bottom: 35px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     letter-spacing: 5px;
-    text-shadow: 1px 1px rgba(0,0,0,0.2);
 }
 
 div.content h1, h2, h3, h4, h5, h6 {
@@ -913,6 +912,9 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 }
 
 /* Cart */
+.content.cart div.container div.wrapper div.row div.col-12  {
+    height: 175px;
+}
 
 .content.cart .card {
     min-height: 145px;
@@ -993,7 +995,7 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 
 .content.cart .card.cart_amounts {
     min-height: 90px;
-    margin-top: -60px;
+    margin-top: -10px;
 }
 
 .content.cart .card.cart_amounts .checkout_buttons {
@@ -1082,4 +1084,3 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
         min-width:100%;
     }
 }
-

@@ -44,12 +44,15 @@ if (HTTP_HOST === "http://localhost") {
     define('DEBUG_OUTPUT', 'false');
 
     // define db consts
-    define('DB_USER', '');
-    define('DB_PASS', '');
+    define('DB_USER', 'acws191');
+    define('DB_PASS', 'hoZwas-nudror-hipmi2');
     define('DB_HOST', 'localhost:3306');
-    define('DB_NAME', '');
+    define('DB_NAME', 'acws191');
     define('DB_TABLE_NAME', '');
 }
+
+// start globally session handling
+session_start();
 
 // auto include classes
 function __autoload($className) {
