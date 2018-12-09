@@ -91,12 +91,24 @@ class cart extends get_products {
         if ($item === false) {
 
             $sql_delete = "DELETE FROM acs_orders WHERE order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
+            $this->conn->query($sql_delete);
 
             unset($_SESSION['order']);
         } else {
+
             $sql_delete = "DELETE FROM acs_orders WHERE order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "' AND item = " . $item;
+            $this->conn->query($sql_delete);
+
+            $sql_check = "SELECT COUNT(id) AS cart_count FROM acs_orders WHERE order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
+            $result_check = $this->conn->query($sql_check);
+
+            $cart_check = $result_check->fetch_array(MYSQLI_ASSOC);
+
+            if ($cart_check['cart_count'] == "0") {
+
+                unset($_SESSION['order']);
+            }
         }
-        $this->conn->query($sql_delete);
 
         header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/warenkorb/');
     }
