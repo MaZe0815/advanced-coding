@@ -127,7 +127,7 @@ class cart extends get_products {
             $row_items[0] = $result_amount->fetch_array(MYSQLI_ASSOC);
 
             $this->order_total_shipping = $this->order_total_shipping + ($this->order_shipping * $row_items[0]['amount']);
-            $this->order_total = (parent::calc_vat($row_items[0]['price']) + $this->order_total_shipping);
+            $this->order_total = (parent::calc_vat($row_items[0]['price'] * $row_items[0]['amount']) + $this->order_total_shipping);
 
             return $row_items;
         } elseif ($result_amount->num_rows >= 1) {
