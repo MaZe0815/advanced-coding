@@ -2,6 +2,7 @@
 
 class cart extends get_products {
 
+    public $conn;
     private $order_praefix = "placeholder";
     private $ordernr_length = 15;
     private $order_shipping = 1.50;
