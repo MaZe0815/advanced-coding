@@ -1067,7 +1067,7 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
     float:left;
 }
 .fehler	{
-    border:2px solid red;
+    border:2px solid red!important;
 }
 .fehlerzelle {
     display:inline-block;
