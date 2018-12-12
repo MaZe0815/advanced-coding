@@ -33,7 +33,7 @@ if (HTTP_HOST === "http://localhost") {
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'advanced_coding_shop');
     define('DB_TABLE_NAME', '');
-} elseif (HTTP_HOST === "https://acws191.erlenkaemper.eu") {
+} elseif (HTTP_HOST === "https://acws191.erlenkaemper.eu" || HTTP_HOST === "http://acws191.erlenkaemper.eu") {
 
     // define error display stages (Production)
     ini_set('display_errors', 0);
