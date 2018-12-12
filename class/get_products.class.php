@@ -233,8 +233,12 @@ class get_products {
 
                 return $arrImage[array_rand($arrImage)];
             } else {
+
                 return "https://via.placeholder.com/350x408";
             }
+        } else {
+
+            return "https://via.placeholder.com/350x408";
         }
     }
 
