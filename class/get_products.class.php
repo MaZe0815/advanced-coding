@@ -107,73 +107,112 @@ class get_products {
                 }
                 $this->conn->close();
             }
+        } else {
+
+            $this->conn->close();
+            return false;
         }
     }
 
     public function get_manufacturer_platform($pid) {
 
-        $sql_platform = "SELECT acs_manufacturers.name AS manufacturer, acs_platforms.name AS platform FROM acs_platforms LEFT JOIN acs_manufacturers ON acs_manufacturers.id = acs_platforms.mid WHERE acs_platforms.id = " . $pid;
-        $result_platform = $this->conn->query($sql_platform);
-        $row_platform = $result_platform->fetch_array(MYSQLI_ASSOC);
+        if (strlen($this->conn->connect_error) === 0) {
 
-        return $row_platform;
+            $sql_platform = "SELECT acs_manufacturers.name AS manufacturer, acs_platforms.name AS platform FROM acs_platforms LEFT JOIN acs_manufacturers ON acs_manufacturers.id = acs_platforms.mid WHERE acs_platforms.id = " . $pid;
+            $result_platform = $this->conn->query($sql_platform);
+            $row_platform = $result_platform->fetch_array(MYSQLI_ASSOC);
+
+            return $row_platform;
+        } else {
+
+            $this->conn->close();
+            return false;
+        }
     }
 
     public function get_manufacturers_platforms() {
 
-        $sql_platforms = "SELECT acs_platforms.id AS platformID, acs_platforms.name AS platform, acs_manufacturers.name AS manufacturer FROM acs_platforms LEFT JOIN acs_manufacturers ON acs_manufacturers.id = acs_platforms.mid ORDER BY acs_manufacturers.name asc";
-        $result_platforms = $this->conn->query($sql_platforms);
+        if (strlen($this->conn->connect_error) === 0) {
 
-        while ($row = $result_platforms->fetch_array(MYSQLI_ASSOC)) {
-            $row_platforms[] = $row;
+            $sql_platforms = "SELECT acs_platforms.id AS platformID, acs_platforms.name AS platform, acs_manufacturers.name AS manufacturer FROM acs_platforms LEFT JOIN acs_manufacturers ON acs_manufacturers.id = acs_platforms.mid ORDER BY acs_manufacturers.name asc";
+            $result_platforms = $this->conn->query($sql_platforms);
+
+            while ($row = $result_platforms->fetch_array(MYSQLI_ASSOC)) {
+                $row_platforms[] = $row;
+            }
+
+            return $row_platforms;
+        } else {
+
+            $this->conn->close();
+            return false;
         }
-
-        return $row_platforms;
     }
 
     public function get_genre($gid) {
 
-        $sql_genre = "SELECT name FROM acs_genres WHERE id = " . $gid . " LIMIT 1";
-        $result_genre = $this->conn->query($sql_genre);
+        if (strlen($this->conn->connect_error) === 0) {
 
-        $row_genre = $result_genre->fetch_array(MYSQLI_ASSOC);
+            $sql_genre = "SELECT name FROM acs_genres WHERE id = " . $gid . " LIMIT 1";
+            $result_genre = $this->conn->query($sql_genre);
 
-        return $row_genre;
+            $row_genre = $result_genre->fetch_array(MYSQLI_ASSOC);
+
+            return $row_genre;
+        } else {
+
+            $this->conn->close();
+            return false;
+        }
     }
 
     public function get_genres() {
 
-        $sql_genres = "SELECT id, name FROM acs_genres order by name asc";
-        $result_genres = $this->conn->query($sql_genres);
+        if (strlen($this->conn->connect_error) === 0) {
 
-        while ($row = $result_genres->fetch_array(MYSQLI_ASSOC)) {
-            $row_genres[] = $row;
+            $sql_genres = "SELECT id, name FROM acs_genres order by name asc";
+            $result_genres = $this->conn->query($sql_genres);
+
+            while ($row = $result_genres->fetch_array(MYSQLI_ASSOC)) {
+                $row_genres[] = $row;
+            }
+
+            return $row_genres;
+        } else {
+
+            $this->conn->close();
+            return false;
         }
-
-        return $row_genres;
     }
 
     private function calc_pagination() {
 
-        $this->start = ($this->curpage * $this->product_limit) - $this->product_limit;
+        if (strlen($this->conn->connect_error) === 0) {
 
-        if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
-            $sql_product_pages = "SELECT id FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ")";
-        } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
-            $sql_product_pages = "SELECT id FROM acs_products WHERE `pid` = " . $this->filter_console;
-        } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
-            $sql_product_pages = "SELECT id FROM acs_products WHERE `gid` = " . $this->filter_genre;
+            $this->start = ($this->curpage * $this->product_limit) - $this->product_limit;
+
+            if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
+                $sql_product_pages = "SELECT id FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ")";
+            } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
+                $sql_product_pages = "SELECT id FROM acs_products WHERE `pid` = " . $this->filter_console;
+            } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
+                $sql_product_pages = "SELECT id FROM acs_products WHERE `gid` = " . $this->filter_genre;
+            } else {
+                $sql_product_pages = "SELECT id FROM acs_products";
+            }
+
+            $result_product_pages = $this->conn->query($sql_product_pages);
+            $this->total_res = mysqli_num_rows($result_product_pages);
+
+            $this->endpage = ceil($this->total_res / $this->product_limit);
+            $this->startpage = 1;
+            $this->nextpage = $this->curpage + 1;
+            $this->previouspage = $this->curpage - 1;
         } else {
-            $sql_product_pages = "SELECT id FROM acs_products";
+
+            $this->conn->close();
+            return false;
         }
-
-        $result_product_pages = $this->conn->query($sql_product_pages);
-        $this->total_res = mysqli_num_rows($result_product_pages);
-
-        $this->endpage = ceil($this->total_res / $this->product_limit);
-        $this->startpage = 1;
-        $this->nextpage = $this->curpage + 1;
-        $this->previouspage = $this->curpage - 1;
     }
 
     public function calc_vat($price) {
