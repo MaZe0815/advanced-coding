@@ -82,7 +82,7 @@ function asyn_search(path, target, search) {
 
     if (len != 0 && len >= 5) {
 
-        const markup = '<div class="card"><div><h2>###product_name####</h2></div><div class="manufacturer_platform"><p class="manufacturer_platform"> Plattform: <span>###platform####</span><br> Genre: <span>###genre####</span><br></p></div><div class="product_sub"><p><span class="price">###price#### inkl. Mwst</span></p><a class="add_to_cart button button-primary" href="###base_url####/artikeluebersicht?pid=###product_id####" target="_self"><i class="fa fa-share"></i></a></div></div><hr>';
+        const markup = '<div class="card"><div><h2>###product_name####</h2></div><div class="manufacturer_platform"><p class="manufacturer_platform"> Plattform: <span>###platform####</span><br> Genre: <span>###genre####</span><br></p></div><div class="product_sub"><p><span class="price">Preis: ###price#### inkl. Mwst</span></p><a class="add_to_cart button button-primary" href="###base_url####/artikeluebersicht?pid=###product_id####" target="_self"><i class="fa fa-share"></i></a></div></div><hr>';
 
         var d = document.getElementById(target);
         d.style.display = "none";
@@ -177,6 +177,9 @@ document.body.addEventListener("click", function (e) {
         d_val.value = "";
         d_res.innerHTML = "";
         d.style.display = "none";
+    } else {
+
+        d_val.value = "";
     }
 
 }, false);
