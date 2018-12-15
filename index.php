@@ -5,8 +5,6 @@ $get_products = new get_products();
 $get_products->product_limit = 16;
 
 $products = $get_products->get_products();
-$product_genres = $get_products->get_genres();
-$product_platforms = $get_products->get_manufacturers_platforms();
 ?>
 <!DOCTYPE html>
 <html>
