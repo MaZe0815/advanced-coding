@@ -21,6 +21,15 @@ function display_function(id, cid) {
     if (d.style.display === "none") {
         d.style.display = "block";
     } else {
+        var d_val = document.getElementById("input_inline_search");
+        var d_res = document.getElementById("inline_search_results");
+
+        if (d.style.display === "block" && d_val && d_res) {
+
+            d_val.value = "";
+            d_res.innerHTML = "";
+        }
+
         d.style.display = "none";
     }
 }
@@ -155,3 +164,19 @@ function show_large(srcLarge) {
     document.getElementById("large_detail").src = srcLarge;
     return false;
 }
+
+/* Globally closing and handling of inline search behavior */
+document.body.addEventListener("click", function (e) {
+
+    var d = document.getElementById("inline_search");
+    var d_val = document.getElementById("input_inline_search");
+    var d_res = document.getElementById("inline_search_results");
+
+    if (d.style.display === "block") {
+
+        d_val.value = "";
+        d_res.innerHTML = "";
+        d.style.display = "none";
+    }
+
+}, false);
