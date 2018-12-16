@@ -6,6 +6,7 @@ function display_function(id, cid) {
     var d = document.getElementById(display_id);
     var classes = document.getElementById(clicked_id);
     var classes_names = classes.className;
+
     if (classes_names.includes("fa-") === true) {
 
         classes.classList.add("fa-close");
@@ -19,8 +20,10 @@ function display_function(id, cid) {
     }
 
     if (d.style.display === "none") {
+
         d.style.display = "block";
     } else {
+
         var d_val = document.getElementById("input_inline_search");
         var d_res = document.getElementById("inline_search_results");
 
@@ -38,10 +41,12 @@ function display_function(id, cid) {
 function filter_function(c_m, id) {
 
     if (c_m === "g") {
+
         insert_param("g", id);
     }
 
     if (c_m === "p") {
+
         insert_param("c", id);
     }
 }
@@ -52,7 +57,9 @@ function insert_param(key, value) {
     key = escape(key);
     value = escape(value);
     var kvp = document.location.search.substr(1).split('&');
+
     if (kvp == '') {
+
         document.location.search = '?' + key + '=' + value;
     } else {
 
@@ -68,6 +75,7 @@ function insert_param(key, value) {
         }
 
         if (i < 0) {
+
             kvp[kvp.length] = [key, value].join('=');
         }
 
@@ -105,8 +113,6 @@ function asyn_search(path, target, search) {
                         if (products.hasOwnProperty(key)) {
 
                             var product_markup = markup;
-                            product_markup = markup.replace('###product_name####', products[key]['product_name']);
-
                             gross_price = new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(products[key]['gross_price']);
 
                             var find = ["###product_name####",
@@ -131,6 +137,7 @@ function asyn_search(path, target, search) {
                     }
 
                     if (d.style.display === "none") {
+
                         d.style.display = "block";
                     }
                 } else {
@@ -152,7 +159,9 @@ function asyn_search(path, target, search) {
 
 /* String replace function for inline search markup */
 function replace_string(str, find, replace) {
+
     for (var i = 0; i < find.length; i++) {
+
         str = str.replace(new RegExp(find[i], 'gi'), replace[i]);
     }
     return str;
