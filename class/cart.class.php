@@ -59,7 +59,7 @@ class cart extends get_products {
 
         if (strlen($this->conn->connect_error) === 0) {
 
-            $sql_get = "SELECT acs_orders.item, acs_orders.amount, acs_products.img_url, acs_products.product_name, acs_products.price, acs_products.pid, acs_products.gid FROM acs_orders LEFT JOIN acs_products ON acs_orders.item = acs_products.id WHERE acs_products.id = acs_orders.item AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
+            $sql_get = "SELECT acs_orders.item, acs_orders.amount, acs_products.img_url, acs_products.product_name, acs_products.description, acs_products.price, acs_products.pid, acs_products.gid FROM acs_orders LEFT JOIN acs_products ON acs_orders.item = acs_products.id WHERE acs_products.id = acs_orders.item AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
             $result_get = $this->conn->query($sql_get);
 
             if ($result_get->num_rows === 1) {

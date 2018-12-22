@@ -18,6 +18,11 @@
                             Genre: <span><?php echo $products[$key]['genre']['name']; ?></span><br>
                         </p>
                     </div>
+                    <div class="description crop">
+                        <p class="description">
+                            <?php echo nl2br($products[$key]['description']); ?>
+                        </p>
+                    </div>
                     <div class="product_sub">
                         <p>
                             Einzelpreis: <span class="price"><?php echo number_format($products[$key]['gross_price'], 2, ',', '.'); ?> &euro;</span>, <span class="gross">inkl. Mwst</span><br>
