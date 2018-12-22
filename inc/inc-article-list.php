@@ -44,7 +44,7 @@ if ($products !== false) {
                         <a href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/artikeluebersicht?pid=' . $products[$key]['id']; ?>" target="_self">Jetzt Details ansehen</a>
                     </p>
                 </div>
-                <div class="description">
+                <div class="description crop">
                     <p class="description">
                         <?php echo nl2br($get_products->word_cut_string($products[$key]['description'], 0, 20)); ?>
                     </p>

@@ -285,14 +285,6 @@ div.haeder_logo img {
     height:auto;
 }
 
-div.inline_search {
-
-}
-
-div.cart {
-
-}
-
 div.footer {
     z-index: 2;
     font-size: 12px;
@@ -341,7 +333,7 @@ div.footer {
     }
 
     div.footer {
-        position: relative;
+        position: normal;
     }
 
     div.footer.ac_card a {
@@ -420,13 +412,14 @@ input[type="password"],
 textarea,
 select {
     height: 38px;
-    padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+    padding: 6px 10px;
     background-color: #fff;
     border: 1px solid #D1D1D1;
     border-radius: 4px;
     box-shadow: none;
-    box-sizing: border-box; }
-/* Removes awkward default styles on some inputs for iOS */
+    box-sizing: border-box;
+}
+
 input[type="email"],
 input[type="number"],
 input[type="search"],
@@ -685,7 +678,12 @@ form {
 }
 
 .card div.description {
-    min-height: 150px;
+    height: 9.6em;
+    overflow: hidden;
+}
+
+.card div.description_details {
+    height: 25.1em;
 }
 
 .card div.description p {
@@ -734,6 +732,9 @@ form {
 .card .manufacturer_platform {
     font-size: 12px;
     margin-bottom: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card .manufacturer_platform  span{
@@ -1052,6 +1053,10 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
     border: 0px;
 }
 
+form#frontendForm table#defaultPaymentTable.mainTable {
+    width: 100%;
+}
+
 form#frontendForm {
     font-family: 'Montserrat', sans-serif;
     margin-left: 0px;
@@ -1064,6 +1069,7 @@ form#frontendForm td.label label {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.5;
     padding-left: 10px;
+    word-wrap: break-word;
 }
 
 form#frontendForm label {
@@ -1091,6 +1097,7 @@ form#frontendForm th,
 form#frontendForm td {
     padding: 0px;
     border-bottom: 0px;
+    display: inline-block;
 }
 
 form#frontendForm td.userInput {
@@ -1102,7 +1109,7 @@ form#frontendForm td.label {
 }
 
 form#frontendForm table.mainTable {
-    width: 1000%;
+    width: 100%;
 }
 
 .frm_box {
