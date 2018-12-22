@@ -650,13 +650,6 @@ form {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.card img {
-    max-width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .card hr {
     margin-top: -30px;
     margin-bottom: 15px;
@@ -670,11 +663,14 @@ form {
 
 .card .limited {
     max-width: 250px;
-    height: 115px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card .limited img {
+    max-width: 100%;
+    display: block;
     border: 1px solid rgba(0,0,0,0.2);
-    margin: 0 auto;
 }
 
 .card div.description {
