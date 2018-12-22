@@ -130,10 +130,6 @@ class cart extends get_products {
         header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/warenkorb/');
     }
 
-    public function checkout_cart() {
-
-    }
-
     private function calc_item_sum_price($price, $amount) {
 
         return ($price * $amount);

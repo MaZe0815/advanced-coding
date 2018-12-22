@@ -12,7 +12,16 @@ if (isset($_POST['id']) && strlen($_POST['id']) && isset($_POST['quantity']) && 
 
     $cart->delete_cart();
 } elseif (isset($_GET['d']) && strlen($_GET['d'])) {
+
     $cart->delete_cart($_GET['d']);
+} elseif (isset($_GET['c']) && strlen($_GET['c'])) {
+
+    $checkout = new checkout();
+    $checkout->set_heidelpay_basics();
+    $checkout->set_user();
+    $checkout->set_amounts();
+    $checkout->request_heidelpay();
+    $checkout->init_payments();
 }
 ?>
 <!DOCTYPE html>
@@ -37,7 +46,15 @@ if (isset($_POST['id']) && strlen($_POST['id']) && isset($_POST['quantity']) && 
             <div class="container">
                 <div class="wrapper">
                     <h1>Warenkorb</h1>
-                    <?php include 'inc/inc-cart.php'; ?>
+                    <?php
+                    if (isset($_GET['c']) && strlen($_GET['c'])) {
+
+                        include 'inc/inc-checkout.php';
+                    } else {
+
+                        include 'inc/inc-cart.php';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
