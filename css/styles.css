@@ -1039,8 +1039,14 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 /* heidelpay overwrites */
 .heidelpay_iframe {
     width: 100%;
-    height: 1200px;
+    height: 650px;
     border: 0px;
+}
+
+form#frontendForm #userInfoBlock,
+form#frontendForm #addressBlock,
+form#frontendForm #contactBlock {
+    display: none;
 }
 
 form#frontendForm table#defaultPaymentTable.mainTable {
