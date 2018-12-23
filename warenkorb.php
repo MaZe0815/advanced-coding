@@ -33,7 +33,10 @@ if (isset($_POST['id']) && strlen($_POST['id']) && isset($_POST['quantity']) && 
 
             $cart = new cart();
             $cart->set_final_amounts();
+            $cart->set_final_shipping_address();
             $cart->check_out_order($checkout->cpt_response_frontend);
+
+            unset($_SESSION['order']);
             break;
 
         case "NOK":

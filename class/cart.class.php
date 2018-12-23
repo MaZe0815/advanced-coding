@@ -148,6 +148,31 @@ class cart extends get_products {
                     $this->conn->query($sql_update);
                 }
             }
+        } else {
+
+            $this->conn->close();
+            return false;
+        }
+    }
+
+    public function set_final_shipping_address() {
+
+        if (strlen($this->conn->connect_error) === 0) {
+
+            $sql_user = "SELECT id, anrede, vorname, nachname,strasse, plz, stadt FROM acs_userlegitimation WHERE id = " . $_SESSION['user'] . " LIMIT 1";
+            $result_user = $this->conn->query($sql_user);
+
+            if ($result_user->num_rows > 0) {
+
+                $row_user = $result_user->fetch_array(MYSQLI_ASSOC);
+
+                $sql_insert = "INSERT INTO acs_orders_shippings (id, uid, order_number, anrede, vorname, nachname, strasse, plz, stadt) VALUES ('','" . $row_user['id'] . "', '" . $_SESSION['order']['order_number'] . "', '" . $row_user['anrede'] . "', '" . $row_user['vorname'] . "', '" . $row_user['nachname'] . "', '" . $row_user['strasse'] . "', '" . $row_user['plz'] . "', '" . $row_user['stadt'] . "')";
+                $this->conn->query($sql_insert);
+            }
+        } else {
+
+            $this->conn->close();
+            return false;
         }
     }
 
@@ -164,9 +189,11 @@ class cart extends get_products {
 
                 $sql_update = "UPDATE acs_orders SET status = '" . $this->order_status . "', resp_status = '" . $resp_status . "', date_ordered = now() WHERE order_number = '" . $_SESSION['order']['order_number'] . "'";
                 $this->conn->query($sql_update);
-
-                unset($_SESSION['order']);
             }
+        } else {
+
+            $this->conn->close();
+            return false;
         }
     }
 
@@ -195,7 +222,9 @@ class cart extends get_products {
                 while ($row = $result_amount->fetch_array(MYSQLI_ASSOC)) {
 
                     $this->order_total = $this->order_total + (parent::calc_vat($row['price'] * $row['amount']));
-                    $this->order_total_shipping = $this->order_total_shipping + ($this->order_shipping * $row['amount']);
+                    $this->order_total_shipping = $this->order_total_shipping + ($this->order_shipping * $row['amount
+
+                ']);
                 }
                 $this->order_total = ($this->order_total + $this->order_total_shipping);
             }
