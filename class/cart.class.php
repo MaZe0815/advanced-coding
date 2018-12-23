@@ -43,7 +43,7 @@ class cart extends get_products {
                 $sql_update = "UPDATE acs_orders SET amount = " . $quantity . ", date_cart =  now() WHERE item = " . $id . " AND order_number = '" . $_SESSION['order']['order_number'] . "' LIMIT 1";
                 $this->conn->query($sql_update);
             } else {
-                $sql_insert = "INSERT INTO " . DB_TABLE_NAME . " acs_orders (id, order_number, item, price, amount, status, date_cart) VALUES ('', '" . $_SESSION['order']['order_number'] . "', '" . $id . "', '', '" . $quantity . "', '" . $this->order_status . "',  now())";
+                $sql_insert = "INSERT INTO acs_orders (id, order_number, item, price, amount, status, date_cart) VALUES ('', '" . $_SESSION['order']['order_number'] . "', '" . $id . "', '', '" . $quantity . "', '" . $this->order_status . "',  now())";
                 $this->conn->query($sql_insert);
             }
         } else {
@@ -128,6 +128,46 @@ class cart extends get_products {
         }
 
         header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/warenkorb/');
+    }
+
+    public function set_final_amounts() {
+
+        if (strlen($this->conn->connect_error) === 0) {
+
+            $sql_is_set = "SELECT id FROM acs_orders WHERE order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
+            $result_is_set = $this->conn->query($sql_is_set);
+
+            if ($result_is_set->num_rows > 0) {
+
+                $sql_amount = "SELECT acs_orders.item, acs_orders.amount, acs_products.price FROM acs_orders LEFT JOIN acs_products ON acs_orders.item = acs_products.id WHERE acs_products.id = acs_orders.item AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
+                $result_amount = $this->conn->query($sql_amount);
+
+                while ($row = $result_amount->fetch_array(MYSQLI_ASSOC)) {
+
+                    $sql_update = "UPDATE acs_orders SET price = " . parent::calc_vat($row['price']) . ", vat = " . $this->order_shipping . " WHERE item = " . $row['item'] . " AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "' LIMIT 1";
+                    $this->conn->query($sql_update);
+                }
+            }
+        }
+    }
+
+    public function check_out_order($resp_status) {
+
+        if (strlen($this->conn->connect_error) === 0) {
+
+            $this->order_status = "ordered";
+
+            $sql_is_set = "SELECT id FROM acs_orders WHERE order_number = '" . $_SESSION['order']['order_number'] . "' and price > 0 and vat > 0";
+            $result_is_set = $this->conn->query($sql_is_set);
+
+            if ($result_is_set->num_rows > 0) {
+
+                $sql_update = "UPDATE acs_orders SET status = '" . $this->order_status . "', resp_status = '" . $resp_status . "', date_ordered = now() WHERE order_number = '" . $_SESSION['order']['order_number'] . "'";
+                $this->conn->query($sql_update);
+
+                unset($_SESSION['order']);
+            }
+        }
     }
 
     private function calc_item_sum_price($price, $amount) {

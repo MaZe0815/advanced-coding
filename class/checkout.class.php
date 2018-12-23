@@ -13,6 +13,8 @@ class checkout {
     public $cpt_info;
     public $cpt_error;
     public $cpt_response = array();
+    public $cpt_response_frontend = false;
+    public $cpt_response_frontend_state = "NOK";
 
     function __construct() {
 
@@ -38,8 +40,8 @@ class checkout {
         $this->heidelpay_params['USER.PWD'] = "password";
         $this->heidelpay_params['TRANSACTION.CHANNEL'] = "31HA07BC810C91F086433734258F6628";
         $this->heidelpay_params['PRESENTATION.CURRENCY'] = "EUR";
-        $this->heidelpay_params['FRONTEND.RESPONSE_URL'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/warenkorb/?c=true&p=true";
-        $this->heidelpay_params['FRONTEND.RETURN_ACCOUNT'] = true;
+        $this->heidelpay_params['FRONTEND.RESPONSE_URL'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/ajax/async_checkout_response/";
+        $this->heidelpay_params['FRONTEND.RETURN_ACCOUNT'] = false;
         $this->heidelpay_params['FRONTEND.MODE'] = "DEFAULT";
         $this->heidelpay_params['TRANSACTION.MODE'] = "INTEGRATOR_TEST";
         $this->heidelpay_params['FRONTEND.ENABLED'] = "true";
@@ -85,7 +87,7 @@ class checkout {
         $this->heidelpay_params['PRESENTATION.AMOUNT'] = number_format($cart->order_total, 2, '.', '');
         $this->heidelpay_params['IDENTIFICATION.TRANSACTIONID'] = $_SESSION['order']['order_number'];
         $this->heidelpay_params['PRESENTATION.USAGE'] = 'Bestellnummer: ' . $_SESSION['order']['order_number'];
-        $this->heidelpay_params['PAYMENT.CODE'] = "CC.RG";
+        $this->heidelpay_params['PAYMENT.CODE'] = "CC.DB";
     }
 
     public function request_heidelpay() {
@@ -123,8 +125,6 @@ class checkout {
             unset($temp2);
             unset($temp);
         }
-
-        print_r($this->cpt_error);
 
         if (!isset($this->cpt_response['FRONTEND.REDIRECT_URL']) && !strlen($this->cpt_response['FRONTEND.REDIRECT_URL'])) {
 

@@ -22,6 +22,26 @@ if (isset($_POST['id']) && strlen($_POST['id']) && isset($_POST['quantity']) && 
     $checkout->set_amounts();
     $checkout->request_heidelpay();
     $checkout->init_payments();
+} elseif (isset($_GET['s']) && strlen($_GET['s'])) {
+
+    switch ($_GET['s']) {
+
+        case "ACK":
+            $checkout = new checkout();
+            $checkout->cpt_response_frontend = true;
+            $checkout->cpt_response_frontend = $_GET['s'];
+
+            $cart = new cart();
+            $cart->set_final_amounts();
+            $cart->check_out_order($checkout->cpt_response_frontend);
+            break;
+
+        case "NOK":
+            $checkout = new checkout();
+            $checkout->cpt_response_frontend = false;
+            $checkout->cpt_response_frontend = $_GET['s'];
+            break;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -50,6 +70,9 @@ if (isset($_POST['id']) && strlen($_POST['id']) && isset($_POST['quantity']) && 
                     if (isset($_GET['c']) && strlen($_GET['c'])) {
 
                         include 'inc/inc-checkout.php';
+                    } elseif (isset($_GET['s']) && strlen($_GET['s'])) {
+
+                        include 'inc/inc-checkout-response.php';
                     } else {
 
                         include 'inc/inc-cart.php';
