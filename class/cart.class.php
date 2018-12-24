@@ -31,28 +31,38 @@ class cart extends get_products {
 
         if (strlen($this->conn->connect_error) === 0) {
 
-            if (!isset($_SESSION['order'])) {
+            if (isset($_SESSION['user'])) {
 
-                $_SESSION['order']['order_number'] = $this->gen_order_number();
-            }
+                if (!isset($_SESSION['order'])) {
 
-            $sql_is_set = "SELECT id FROM acs_orders WHERE item = " . $id . " AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "' LIMIT 1";
-            $result_is_set = $this->conn->query($sql_is_set);
+                    $_SESSION['order']['order_number'] = $this->gen_order_number();
+                }
 
-            if ($result_is_set->num_rows > 0) {
-                $sql_update = "UPDATE acs_orders SET amount = " . $quantity . ", date_cart =  now() WHERE item = " . $id . " AND order_number = '" . $_SESSION['order']['order_number'] . "' LIMIT 1";
-                $this->conn->query($sql_update);
+                $sql_is_set = "SELECT id FROM acs_orders WHERE item = " . $id . " AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "' LIMIT 1";
+                $result_is_set = $this->conn->query($sql_is_set);
+
+                if ($result_is_set->num_rows > 0) {
+
+                    $sql_update = "UPDATE acs_orders SET amount = " . $quantity . ", date_cart =  now() WHERE item = " . $id . " AND order_number = '" . $_SESSION['order']['order_number'] . "' LIMIT 1";
+                    $this->conn->query($sql_update);
+
+                    header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/warenkorb/');
+                } else {
+
+                    $sql_insert = "INSERT INTO acs_orders (id, order_number, item, price, amount, status, date_cart) VALUES ('', '" . $_SESSION['order']['order_number'] . "', '" . $id . "', '', '" . $quantity . "', '" . $this->order_status . "',  now())";
+                    $this->conn->query($sql_insert);
+
+                    header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/warenkorb/');
+                }
             } else {
-                $sql_insert = "INSERT INTO acs_orders (id, order_number, item, price, amount, status, date_cart) VALUES ('', '" . $_SESSION['order']['order_number'] . "', '" . $id . "', '', '" . $quantity . "', '" . $this->order_status . "',  now())";
-                $this->conn->query($sql_insert);
+
+                header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/login/');
             }
         } else {
 
             $this->conn->close();
             return false;
         }
-
-        header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/warenkorb/');
     }
 
     public function get_cart() {
@@ -87,7 +97,7 @@ class cart extends get_products {
 
                 return $row_items;
             } else {
-                header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME);
+                header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/login/');
             }
         } else {
 
@@ -222,7 +232,9 @@ class cart extends get_products {
                 while ($row = $result_amount->fetch_array(MYSQLI_ASSOC)) {
 
                     $this->order_total = $this->order_total + (parent::calc_vat($row['price'] * $row['amount']));
-                    $this->order_total_shipping = $this->order_total_shipping + ($this->order_shipping * $row['amount']);
+                    $this->order_total_shipping = $this->order_total_shipping + ($this->order_shipping * $row['amount
+
+                ']);
                 }
                 $this->order_total = ($this->order_total + $this->order_total_shipping);
             }
