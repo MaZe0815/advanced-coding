@@ -36,9 +36,9 @@ if (HTTP_HOST === "http://localhost") {
 } elseif (HTTP_HOST === "https://acws191.erlenkaemper.eu" || HTTP_HOST === "http://acws191.erlenkaemper.eu") {
 
     // define error display stages (Production)
-    ini_set('display_errors', 0);
-    ini_set('display_startup_errors', 0);
-    error_reporting(E_ERROR);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     // define debug console (Production)
     define('DEBUG_OUTPUT', 'false');

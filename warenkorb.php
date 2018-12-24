@@ -36,6 +36,14 @@ if (isset($_POST['id']) && strlen($_POST['id']) && isset($_POST['quantity']) && 
             $cart->set_final_shipping_address();
             $cart->check_out_order($checkout->cpt_response_frontend);
 
+            $sendmail = new sendmail();
+            $sendmail->send_mail = true;
+            $sendmail->mail_subject = "Ihre Bestellung - Placeholder Shop";
+            $sendmail->mail_to_id = $cart->order_id;
+            $sendmail->mail_to = strtolower($cart->order_user);
+            $sendmail->emailing_template = "tmp_order_confirmation.html";
+            $sendmail->gen_email();
+
             unset($_SESSION['order']);
             break;
 

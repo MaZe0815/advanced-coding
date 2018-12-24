@@ -9,6 +9,8 @@ class cart extends get_products {
     public $order_total = 0;
     public $order_total_shipping = 0;
     private $order_status = "in_cart";
+    public $order_user;
+    public $order_id;
 
     function __construct() {
 
@@ -169,12 +171,15 @@ class cart extends get_products {
 
         if (strlen($this->conn->connect_error) === 0) {
 
-            $sql_user = "SELECT id, anrede, vorname, nachname,strasse, plz, stadt FROM acs_userlegitimation WHERE id = " . $_SESSION['user'] . " LIMIT 1";
+            $sql_user = "SELECT id, username, anrede, vorname, nachname,strasse, plz, stadt FROM acs_userlegitimation WHERE id = " . $_SESSION['user'] . " LIMIT 1";
             $result_user = $this->conn->query($sql_user);
 
             if ($result_user->num_rows > 0) {
 
                 $row_user = $result_user->fetch_array(MYSQLI_ASSOC);
+
+                $this->order_id = $row_user['id'];
+                $this->order_user = $row_user['username'];
 
                 $sql_insert = "INSERT INTO acs_orders_shippings (id, uid, order_number, anrede, vorname, nachname, strasse, plz, stadt) VALUES ('','" . $row_user['id'] . "', '" . $_SESSION['order']['order_number'] . "', '" . $row_user['anrede'] . "', '" . $row_user['vorname'] . "', '" . $row_user['nachname'] . "', '" . $row_user['strasse'] . "', '" . $row_user['plz'] . "', '" . $row_user['stadt'] . "')";
                 $this->conn->query($sql_insert);
