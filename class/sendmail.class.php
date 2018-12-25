@@ -74,12 +74,20 @@ class sendmail {
             $mail->setFrom($this->from_email, $this->from_email_name);
             $mail->addReplyTo($this->no_reply_email, $this->no_reply_email_name);
             $mail->addAddress($this->mail_to, $this->mail_to_name);
+
+            foreach ($this->admin_email_bcc as $bccer) {
+
+                $mail->AddBCC($bccer);
+            }
+
             $mail->Subject = $this->mail_subject;
             $mail->msgHTML($this->emailing_message, dirname(__FILE__));
 
             if (!$mail->send()) {
+
                 $this->mail_success_send = false;
             } else {
+
                 $this->mail_success_send = true;
             }
         } else {
