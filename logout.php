@@ -1,4 +1,14 @@
-<?php require_once('config.php'); ?>
+<?php
+require_once('config.php');
+
+if (isset($_SESSION['user']) && strlen($_SESSION['user'])) {
+
+    unset($_SESSION['user']);
+} else {
+
+    header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME);
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +26,7 @@
         <?php include 'inc/inc-header.php'; ?>
         <div class="content">
             <div class="haeder_logo">
-                <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/register-login.jpg" alt="Registrieren">
+                <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/img/register-login.jpg" alt="Ausloggen">
             </div>
             <div class="container">
                 <div class="wrapper">
@@ -26,10 +36,6 @@
                             <div class="col-12">
                                 <p>Sie haben sich erfolgreich ausgeloggt, um Ihre Daten zu schützen. Wir freuen uns auf Ihren nächsten Besuch.</p>
                                 <hr>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
                             </div>
                         </div>
                     </form>
