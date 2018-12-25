@@ -54,6 +54,9 @@ div.content h1, h2, h3, h4, h5, h6 {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Simple grid system */
@@ -61,7 +64,6 @@ div.content h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-/* 100% width container */
 .container {
     margin: 0;
     padding: 0;
@@ -69,13 +71,11 @@ div.content h1, h2, h3, h4, h5, h6 {
     list-style: none;
 }
 
-/* Give `.wrapper` a maximum width and center it within its parent*/
 .wrapper {
     margin: 0 auto;
     max-width: 100%;
 }
 
-/* Don’t honor column widths until viewport is at least 600px wide */
 @media (min-width: 1024px) {
     .row {
         margin-right: -1.333%;
@@ -92,7 +92,6 @@ div.content h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
 
-    /* Remove space between `.col-*` elements with `.no-gutter` class */
     .row.no-gutter {
         margin-left: 0;
         margin-right: 0;
@@ -103,7 +102,6 @@ div.content h1, h2, h3, h4, h5, h6 {
         padding-right: 0;
     }
 
-    /* Column widths */
     .col-1  { width: 8.333%;  }
     .col-2  { width: 16.666%; }
     .col-3  { width: 25%;     }
@@ -145,7 +143,6 @@ div.content h1, h2, h3, h4, h5, h6 {
     .pull-12 { right: 100%;    }
 }
 
-/* Clear floats */
 .container:before,
 .container:after,
 .wrapper:before,
@@ -676,15 +673,21 @@ form {
 .card div.description {
     height: 9.6em;
     overflow: hidden;
+    pointer-events: none;
+    cursor: default;
 }
 
 .card div.description_details {
     height: 25.1em;
+    pointer-events: none;
+    cursor: default;
 }
 
 .card div.description p {
     font-size: 0.8em;
     letter-spacing: 1px;
+    pointer-events: none;
+    cursor: default;
 }
 
 .card div.product_sub {

@@ -27,7 +27,7 @@
                     Genre: <span><?php echo $products[$key]['genre']['name']; ?></span><br>
                 </p>
             </div>
-            <div class="description_details">
+            <div class="description_details crop">
                 <p class="description">
                     <?php echo nl2br($products[$key]['description']); ?>
                 </p>
