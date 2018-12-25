@@ -783,6 +783,25 @@ ul.pagination li a.button.button-primary {
     float: right;
     position: absolute;
     left: 50px;
+    max-width: 200px;
+}
+
+@media screen and (max-width: 1264px) {
+    .article_col .card label {
+        max-width: 160px;
+    }
+}
+
+@media screen and (max-width: 1102px) {
+    .article_col .card label {
+        max-width: 120px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .article_col .card label {
+        max-width: 100%;
+    }
 }
 
 /* Search bar input */
@@ -878,8 +897,21 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 }
 
 /* Image slides replacement */
+#product-listing div.card img#large_detail {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
 #slideshow {
     min-height: 130px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: inherit;
 }
 
 #slideshow a:hover img {
@@ -887,7 +919,7 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
     transform: scale(1.15);
 }
 
-#slideshow a figure img {
+#slideshow a img {
     float: left;
     display: block;
     margin-right: 10px;
@@ -900,12 +932,42 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
     transition: -webkit-transform .2s ease-in-out;
     transition: transform .2s ease-in-out;
     transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 1489px) {
+    #slideshow a img {
+        max-width: 60px;
+    }
+}
+
+@media screen and (max-width: 1270px) {
+    #slideshow a img {
+        max-width: 55px;
+    }
+}
+
+@media screen and (max-width: 1215px) {
+    #slideshow a img {
+        max-width: 50px;
+    }
+}
+
+@media screen and (max-width: 1158px) {
+    #slideshow a img {
+        max-width: 38px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #slideshow a img {
+        max-width: 80px;
+    }
 }
 
 #slideshow a:hover img {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
-
 }
 
 /* Cart */
