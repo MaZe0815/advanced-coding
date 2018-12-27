@@ -11,8 +11,8 @@ class sendmail {
     );
     private $mail_SMTP = true;
     private $mail_host = 'smtp.gmail.com';
-    private $mail_SMTP_user = 'markzembrzycki@googlemail.com';
-    private $mail_SMTP_pass = 'BecksBeer0815';
+    private $mail_SMTP_user = '';
+    private $mail_SMTP_pass = '';
     private $mail_dir = '/mail_templates/';
     public $mail_to;
     public $mail_to_name;
