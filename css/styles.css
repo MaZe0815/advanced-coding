@@ -690,17 +690,19 @@ form {
     cursor: default;
 }
 
-.card div.product_sub {
+.card div.product_sub,
+.card div.product_sub_cart {
     height: 45px;
 }
 
-.card div.product_sub p span.price {
+.card div.product_sub p span.price,
+.card div.product_sub_cart p span.price {
     font-weight: 600;
-    float: left;
     text-decoration: underline;
 }
 
-.card div.product_sub p span.gross {
+.card div.product_sub p span.gross,
+.card div.product_sub_cart p span.gross {
     font-size: 0.8em;
     font-weight: 300;
     text-decoration: none;
@@ -708,7 +710,8 @@ form {
 }
 
 .card div.product_sub button.add_to_cart,
-.card div.product_sub a.add_to_cart {
+.card div.product_sub a.add_to_cart,
+.card div.product_sub_cart button.add_to_cart {
     position: relative;
     bottom: 80px;
     font-weight: 600;
@@ -716,16 +719,99 @@ form {
 }
 
 .card div.product_sub button.add_to_cart .fa,
-.card div.product_sub a.add_to_cart .fa {
+.card div.product_sub a.add_to_cart .fa,
+.card div.product_sub_cart button.add_to_cart .fa {
     font-weight: 600;
 }
 
-.card div.product_sub input[type="number"] {
+.card div.product_sub input[type="number"],
+.card div.product_sub_cart input[type="number"] {
     width: 65px;
     position: relative;
     bottom: 80px;
     float: right;
     margin-right: 5px;
+}
+
+@media screen and (max-width: 1264px) {
+
+    .card div.product_sub {
+        height: 95px;
+    }
+
+    .card div.product_sub input[type="number"] {
+        float: left;
+        position: relative;
+        top: -25px;
+    }
+
+    .card div.product_sub button.add_to_cart {
+        position: relative;
+        top: -25px;
+    }
+}
+
+@media screen and (max-width: 1102px) {
+
+    .card div.product_sub {
+        height: 95px;
+    }
+
+    .card div.product_sub input[type="number"] {
+        float: left;
+        position: relative;
+        top: -25px;
+    }
+
+    .card div.product_sub button.add_to_cart {
+        position: relative;
+        top: -25px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .card div.product_sub {
+        height: 95px;
+    }
+
+    .card div.product_sub input[type="number"] {
+        float: left;
+        position: relative;
+        top: -25px;
+    }
+
+    .card div.product_sub button.add_to_cart {
+        position: relative;
+        top: -25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .content.cart div.card {
+        min-height: 400px;
+    }
+
+    .content.cart .card.cart_amounts {
+        height: 175px;
+        margin-top: -10px;
+    }
+
+    .card div.product_sub_cart {
+        height: 95px;
+    }
+
+    .card div.product_sub_cart input[type="number"] {
+        float: left;
+        position: relative;
+        top: -25px;
+    }
+
+    .card div.product_sub_cart button.add_to_cart {
+        position: relative;
+        top: -25px;
+    }
 }
 
 .card .manufacturer_platform {
