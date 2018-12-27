@@ -30,8 +30,8 @@
             <?php } ?>
         </ul>
         <p class="pagination_totals">
-            Seite <span><?php echo $get_products->curpage; ?></span> von <span><?php echo $get_products->endpage; ?></span> Seiten.
-            Gesamtergebnisse : <span><?php echo $get_products->total_res; ?></span>.
+            Seite <span><?php echo $get_products->curpage; ?></span> von <span><?php echo $get_products->endpage; ?></span> Seite<?php if ($get_products->endpage > 1) { ?>n<?php } ?>.
+            Gesamtergebnisse: <span><?php echo $get_products->total_res; ?></span> Artikel.
         </p>
     </div>
 </div>
