@@ -228,3 +228,18 @@ window.addEventListener('resize', function (event) {
         crop_text_to_fit(list[i]);
     }
 });
+
+/* Topnav toggle */
+function toggle_menu() {
+
+    var x = document.getElementById("toggle_menu");
+
+    if (x.className === "topnav") {
+
+        x.className += " responsive";
+    } else {
+
+        x.className = "topnav";
+    }
+    return false;
+}

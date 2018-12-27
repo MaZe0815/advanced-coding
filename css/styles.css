@@ -231,7 +231,6 @@ a.topnav-icons {
 
     div.content {
         width: 100%;
-        padding: 90px 25px 25px 25px;
     }
 }
 
@@ -259,12 +258,7 @@ a.topnav-icons {
 
 @media (max-width: 575.98px) {
 
-    div.haeder_logo {
-        display: none;
-    }
-
     div.content {
-        padding: 105px 25px 25px 25px;
         min-height: 100%;
     }
 }
@@ -279,7 +273,7 @@ div.haeder_logo {
 
 div.haeder_logo img {
     width: 100%;
-    height:auto;
+    height: auto;
 }
 
 div.footer {
@@ -896,15 +890,15 @@ ul.pagination li a.button.button-primary {
 /* Search bar input */
 /* Style the search box inside the navigation bar */
 .topnav input[type=text] {
-    float: right;
     padding: 6px;
     border: none;
     margin-top: 8px;
     margin-right: 17px;
     font-size: 0.71em;
     margin-bottom: -0.5rem;
-    margin-top: 3px;
     margin-left: 10px;
+    position: fixed !important;
+    right: 0;
 }
 
 /* Inline search */
@@ -917,7 +911,7 @@ div.row div#inline_search.inline_search {
     background-color: #ffffff;
     overflow: hidden;
     z-index: 10000;
-    top: 45px;
+    top: 53px;
     padding: 20px;
     border-left: 1px solid #5f5f5f;
     border-bottom: 1px solid #5f5f5f;
@@ -926,7 +920,7 @@ div.row div#inline_search.inline_search {
 }
 
 div.row div#inline_search.inline_search div.card {
-    min-height: 100px !important;
+    min-height: 160px !important;
     box-shadow: none;
     height: auto;
     margin-bottom: 0px;
@@ -936,6 +930,7 @@ div#inline_search.inline_search div.card div h2 {
     font-size: 0.7em;
     overflow: hidden;
     height: auto !important;
+    padding-top: 15px;
 }
 
 div#inline_search.inline_search div.card div.product_sub p span.price {
@@ -1343,4 +1338,80 @@ input#daten.seitenbreit {
 
 form div.zellerechts input[type="submit"] {
     margin-bottom: 75px;
+}
+
+/* Topnav mobile behavior */
+.topnav {
+    background-color: #5f5f5f;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+.topnav .fa.fa-shopping-cart {
+    font-size: 1.6rem;
+}
+
+@media screen and (max-width: 685px) {
+
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav input[type=text] {
+        visibility: hidden;
+    }
+
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 685px) {
+
+    .topnav.responsive {
+        position: relative;
+    }
+
+    .topnav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 870px) {
+
+    #input_inline_search {
+        visibility: hidden;
+    }
 }
