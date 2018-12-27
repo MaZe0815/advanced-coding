@@ -5,7 +5,7 @@ require_once('../config.php');
 if (isset($_POST['s']) && !empty($_POST['s'])) {
 
     $search_products = new search_products();
-    $search_products->product_limit = 6;
+    $search_products->product_limit = 5;
     $search_products->search_str_json = false;
     $search_products->search_str = trim($_POST['s']);
 
