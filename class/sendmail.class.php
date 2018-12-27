@@ -63,7 +63,7 @@ class sendmail {
 
             $mail = new phpmailer;
             $mail->isSMTP(true);
-            $mail->SMTPDebug = 2;
+            $mail->SMTPDebug = 0;
             $mail->Debugoutput = 'html';
             $mail->Host = $this->mail_host;
             $mail->Port = 587;
@@ -211,6 +211,21 @@ class sendmail {
 
             return $user_exploded;
         }
+    }
+
+    function set_double_opt_in() {
+
+        $sql_user = "SELECT id FROM acs_userlegitimation WHERE id = " . $this->id_decoded[0] . " and dataprotection = '1' LIMIT 1";
+        $result_user = $this->conn->query($sql_user);
+
+        if ($result_user->num_rows === 1) {
+
+            $sql_update = "UPDATE acs_userlegitimation SET double_opt_in = '1' WHERE id = " . $this->id_decoded[0] . " and dataprotection = '1' LIMIT 1";
+            $this->conn->query($sql_update);
+
+            header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/login/');
+        }
+        $this->conn->close();
     }
 
 }
