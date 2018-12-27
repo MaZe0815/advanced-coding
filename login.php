@@ -33,7 +33,7 @@
                             // Pr&uuml;fung Anmeldedaten auf Fehler
                             if (isset($_POST['gesendet']) && $_POST['gesendet'] == 1) {
                                 $fehler = array();
-                                if ($_POST['username'] == '') {
+                                if ($_POST['username'] == '' || filter_var($_POST['username'], FILTER_VALIDATE_EMAIL) === false) {
                                     $fehler['username'] = 'Bitte geben Sie Ihre E-Mail Adresse an.';
                                 }
                                 if ($_POST['password'] == '') {
