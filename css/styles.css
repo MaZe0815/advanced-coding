@@ -1195,6 +1195,7 @@ body > table:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(
 .eingabefeld {
     width:100%;
 }
+
 .zeilenwrapper {
     padding-left:0.5em;
     padding-right:0.5em;
@@ -1202,31 +1203,58 @@ body > table:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(
     padding-bottom:0em;
     max-width:550px;
 }
+
 .zellelinks {
     display:inline-block;
     min-width:200px;
     float:left;
 }
+
 .zellerechts {
     display:inline-block;
     min-width:300px;
     float:left;
 }
+
 .fehler	{
-    border:2px solid red!important;
+    border:2px solid red !important;
+    color: red;
 }
+
+.fehler_label,
+.fehler_label a,
+.fehler_label a:active,
+.fehler_label a:hover {
+    color: red;
+}
+
 .fehlerzelle {
     display:inline-block;
-    width:100%;
+    position: relative;
+    top: -25px;
+    width:300px;
     color:red;
+    font-size: 12px;
+    font-weight: 300;
 }
-@media screen and (max-width: 515px) {
-    .platzhalter {
-        display:none;
-    }
+
+form div.zellerechts label {
+    font-size: 12px;
+    font-weight: 300;
+    position: relative;
+    left: 35px;
+    top: -23px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    width: 270px;
 }
-@media screen and (max-width: 300px) {
-    .zellerechts, .zellerechts {
-        min-width:100%;
-    }
+
+input#daten.seitenbreit {
+    position: relative;
+    left: 8px;
+    margin-bottom: 0px;
+}
+
+form div.zellerechts input[type="submit"] {
+    margin-bottom: 75px;
 }

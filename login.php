@@ -30,17 +30,17 @@
                     <div class="row">
                         <div class="col-4">
                             <?php
-                            // Prüfung Anmeldedaten auf Fehler
+                            // Pr&uuml;fung Anmeldedaten auf Fehler
                             if (isset($_POST['gesendet']) && $_POST['gesendet'] == 1) {
                                 $fehler = array();
                                 if ($_POST['username'] == '') {
-                                    $fehler['username'] = 'Bitte geben Sie Ihre E-Mail Adresse an';
+                                    $fehler['username'] = 'Bitte geben Sie Ihre E-Mail Adresse an.';
                                 }
                                 if ($_POST['password'] == '') {
-                                    $fehler['password'] = 'Bitte geben Sie Ihr Passwort an';
+                                    $fehler['password'] = 'Bitte geben Sie Ihr Passwort an.';
                                 }
                                 if ($_POST['username'] != '' && $_POST['password'] != '') {
-                                    $fehler['kein_account'] = 'Bitte prüfen Sie Ihre Anmeldedaten';
+                                    $fehler['kein_account'] = 'Bitte pr&uuml;fen Sie Ihre Anmeldedaten';
                                     $verbindung = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
                                     $query = "SELECT id,password_hash,vorname,nachname from acs_userlegitimation WHERE username='" . $_POST['username'] . "'";
@@ -54,15 +54,15 @@
                                     }
                                 }
                             }
-                            // Begrüßung des Users wenn Anmeldung ok
+                            // Begr&uuml;&szlig;ung des Users wenn Anmeldung ok
                             if (isset($userid) && count($fehler) == 0) {
                                 echo("<div class='zeilenwrapper'>");
-                                echo("<div>Hallo <strong>" . $username . "</strong> – Herzlich Willkommen in unserem Shop</div>");
-                                echo("<div style='margin-top: 35px; margin-bottom: 150px;'>Klicken Sie <a href='" . HTTP_HOST . ROOT_URL . PROJECT_NAME . "/artikeluebersicht'>hier</a>, um direkt zu unseren Aritkeln zu gelangen!</div>");
+                                echo("<div>Hallo <strong>" . $username . "</strong> &ndash; Herzlich Willkommen in unserem Shop!</div>");
+                                echo("<div style='margin-top: 35px; margin-bottom: 150px;'>Klicken Sie <a href='" . HTTP_HOST . ROOT_URL . PROJECT_NAME . "/artikeluebersicht'>hier</a>, um direkt zu unserer Artikel&uuml;bersicht zu gelangen!</div>");
                                 echo("</div>");
                                 $_SESSION['user'] = $userid;
                             }
-                            // Ausgabe Formular wenn keine Anmeldedaten oder Anmeldedaten ungültig
+                            // Ausgabe Formular wenn keine Anmeldedaten oder Anmeldedaten ung&uuml;ltig
                             if (!isset($fehler) || count($fehler) > 0) {
                                 echo("<form action='" . HTTP_HOST . ROOT_URL . PROJECT_NAME . "/login/' method='post'>");
                                 echo("<input type='hidden' name='gesendet' value='1'>");
@@ -76,11 +76,13 @@
                                 echo("<label for='username'>E-Mailadresse</label>");
                                 echo("</div>");
                                 echo("<div class='zellerechts'>");
-                                echo("<input class='eingabefeld' placeholder='Benutzername'");
+                                echo("<input placeholder='Benutzername*'");
                                 if (isset($fehler['username'])) {
-                                    echo(" fehler");
+                                    echo(" class='eingabefeld fehler'");
+                                } else {
+                                    echo(" class='eingabefeld'");
                                 }
-                                echo("'type='text'");
+                                echo(" type='text'");
                                 if (isset($_POST['username'])) {
                                     echo("value='" . $_POST['username'] . "'");
                                 }
@@ -97,12 +99,14 @@
                                 echo("<label for='password'>Passwort</label>");
                                 echo("</div>");
                                 echo("<div class='zellerechts'>");
-                                echo("<input class='eingabefeld' placeholder='Passwort'");
+                                echo("<input placeholder='Passwort*'");
                                 if (isset($fehler['password']) || isset($fehler['password_uebereinstimmung'])) {
-                                    echo("fehler");
+                                    echo(" class='eingabefeld fehler'");
+                                } else {
+                                    echo(" class='eingabefeld'");
                                 }
                                 if (isset($_POST['password'])) {
-                                    echo("value='" . $_POST['password'] . "'");
+                                    echo(" value='" . $_POST['password'] . "'");
                                 }
                                 echo(" name='password'");
                                 echo(" type='password'>");
