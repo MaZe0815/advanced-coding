@@ -237,9 +237,7 @@ class cart extends get_products {
                 while ($row = $result_amount->fetch_array(MYSQLI_ASSOC)) {
 
                     $this->order_total = $this->order_total + (parent::calc_vat($row['price'] * $row['amount']));
-                    $this->order_total_shipping = $this->order_total_shipping + ($this->order_shipping * $row['amount
-
-                ']);
+                    $this->order_total_shipping = $this->order_total_shipping + ($this->order_shipping * $row['amount']);
                 }
                 $this->order_total = ($this->order_total + $this->order_total_shipping);
             }

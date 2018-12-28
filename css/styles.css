@@ -1288,13 +1288,13 @@ body > table:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(
 .zellelinks {
     display:inline-block;
     min-width:200px;
-    float:left;
+
 }
 
 .zellerechts {
     display:inline-block;
     min-width:300px;
-    float:left;
+
 }
 
 .fehler	{
@@ -1445,4 +1445,40 @@ form div.zellerechts input[type="submit"] {
 .error {
     color: #D8000C;
     background-color: #FFD2D2;
+}
+
+/* Responsive table */
+.resp_table td:nth-child(1) {
+    font-weight: 600;
+}
+
+@media all and (max-width:640px) {
+
+    .resp_table,
+    .resp_table thead,
+    .resp_table tbody,
+    .resp_table tr,
+    .resp_table th,
+    .resp_table td {
+        display: block;
+    }
+
+    .resp_table {
+        text-align: left;
+    }
+
+    .resp_table thead {
+        position: absolute;
+        top: -1111px;
+        left: -1111px;
+    }
+
+    .resp_table td:before {
+        float: left;
+        padding: 0 10px 0 0;
+    }
+
+    .resp_table td:last-child {
+        border-bottom: 2px #E1E1E1 solid;
+    }
 }
