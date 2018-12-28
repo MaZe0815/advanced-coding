@@ -50,7 +50,7 @@
                 ?>
                 <tr>
                     <td><?php echo $value['item']; ?></td>
-                    <td><a href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/artikeluebersicht?pid=' . $value['item']; ?>" target="_blank"><?php echo $customer_orders->get_article($value['item']); ?>a</a></td>
+                    <td><a href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/artikeluebersicht?pid=' . $value['item']; ?>" target="_blank"><?php echo $customer_orders->get_article($value['item']); ?></a></td>
                     <td><?php echo $value['amount']; ?> Stk.</td>
                     <td><?php echo number_format($value['price'], 2, ',', '.'); ?> &euro; pro Stk.</td>
                     <td><?php echo number_format($value['vat'], 2, ',', '.'); ?> &euro; pro Stk.</td>
