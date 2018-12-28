@@ -113,15 +113,15 @@ class customer_orders extends cart {
                 $this->order_total_shipping = $this->order_total_shipping + ($value['vat'] * $value['amount']);
                 $this->order_total = $this->order_total + ($value['price'] * $value['amount']);
             }
-            $this->order_total = $this->order_total + $this->order_total_shipping;
         }
+        $this->order_total = $this->order_total + $this->order_total_shipping;
     }
 
     public function format_date($date) {
 
         $date = date("d.m.Y", strToTime($date));
 
-        if ($date === "01.01.1970") {
+        if ($date === "01.01.1970" || $date === "30.11.-0001") {
 
             return "In Bearbeitung";
         } else {
