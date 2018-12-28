@@ -4,6 +4,12 @@ require_once('config.php');
 if (isset($_SESSION['user']) && strlen($_SESSION['user'])) {
 
     unset($_SESSION['user']);
+
+    if (isset($_SESSION['order']) && strlen($_SESSION['order']['order_number'])) {
+
+        $cart = new cart();
+        $cart->delete_cart();
+    }
 } else {
 
     header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME);
