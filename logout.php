@@ -4,6 +4,7 @@ require_once('config.php');
 if (isset($_SESSION['user']) && strlen($_SESSION['user'])) {
 
     unset($_SESSION['user']);
+    unset($_SESSION['userlevel']);
 
     if (isset($_SESSION['order']) && strlen($_SESSION['order']['order_number'])) {
 

@@ -8,6 +8,9 @@
                 <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "artikeluebersicht.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/artikeluebersicht">Artikel&uuml;bersicht</a>
                 <?php if (isset($_SESSION['user'])) { ?>
                     <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "kundenkonto.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/kundenkonto">Kundenkonto</a>
+                    <?php if (isset($_SESSION['userlevel']) && strlen($_SESSION['userlevel']) && $_SESSION['userlevel'] == 1) { ?>
+                        <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "administration.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/administration">Administration</a>
+                    <?php } ?>
                     <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "logout.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/logout">Logout</a>
                 <?php } else { ?>
                     <a class="ac-bar-item ac-button <?php echo (SCRIPT_NAME === "login.php" ? 'active' : ''); ?>" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/login">Login</a>

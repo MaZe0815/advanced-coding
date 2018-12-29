@@ -43,11 +43,12 @@
                                     $fehler['kein_account'] = 'Bitte pr&uuml;fen Sie Ihre Anmeldedaten';
                                     $verbindung = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-                                    $query = "SELECT id,password_hash,vorname,nachname from acs_userlegitimation WHERE username='" . $_POST['username'] . "' AND (dataprotection = '1' AND double_opt_in = '1')";
+                                    $query = "SELECT id,userlevel,password_hash,vorname,nachname from acs_userlegitimation WHERE username='" . $_POST['username'] . "' AND (dataprotection = '1' AND double_opt_in = '1')";
                                     $result = mysqli_query($verbindung, $query);
                                     while ($row = mysqli_fetch_array($result)) {
                                         if (password_verify($_POST['password'], $row['password_hash']) === TRUE) {
                                             $userid = $row['id'];
+                                            $userlevel = $row['userlevel'];
                                             $username = $row['vorname'] . " " . $row['nachname'];
                                             unset($fehler['kein_account']);
                                         }
@@ -61,6 +62,7 @@
                                 echo("<div style='margin-top: 35px; margin-bottom: 150px;'>Klicken Sie <a href='" . HTTP_HOST . ROOT_URL . PROJECT_NAME . "/artikeluebersicht'>hier</a>, um direkt zu unserer Artikel&uuml;bersicht zu gelangen!</div>");
                                 echo("</div>");
                                 $_SESSION['user'] = $userid;
+                                $_SESSION['userlevel'] = $userlevel;
                             }
                             // Ausgabe Formular wenn keine Anmeldedaten oder Anmeldedaten ung&uuml;ltig
                             if (!isset($fehler) || count($fehler) > 0) {
