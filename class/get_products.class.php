@@ -58,7 +58,7 @@ class get_products {
 
                 $this->article_list = false;
 
-                $sql_product = "SELECT id, img_url, product_name, description, price, pid, gid FROM acs_products WHERE id = " . $this->product_id . " LIMIT 1";
+                $sql_product = "SELECT id, img_url, product_name, description, price, pid, gid FROM acs_products WHERE id = " . $this->product_id . " AND active = '1' LIMIT 1";
                 $result_product = $this->conn->query($sql_product);
 
                 if ($result_product->num_rows === 1) {
@@ -81,13 +81,13 @@ class get_products {
 
                 $this->calc_pagination();
                 if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") AND quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " AND quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " AND quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } else {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 }
 
                 $result_product = $this->conn->query($sql_product);
@@ -187,7 +187,7 @@ class get_products {
         }
     }
 
-    private function calc_pagination() {
+    public function calc_pagination() {
 
         if (strlen($this->conn->connect_error) === 0) {
 
