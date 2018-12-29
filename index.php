@@ -2,6 +2,7 @@
 require_once('config.php');
 
 $get_products = new get_products();
+$get_products->rand_query = true;
 $get_products->product_limit = 16;
 
 $products = $get_products->get_products();

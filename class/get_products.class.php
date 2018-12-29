@@ -18,6 +18,8 @@ class get_products {
     public $filter_pagination_adds;
     private $value_vat = 19;
     private $cover_dir = "img/covers";
+    private $quantity_up_to = 6;
+    public $rand_query = false;
 
     function __construct() {
 
@@ -36,9 +38,9 @@ class get_products {
         }
     }
 
-    public function get_products($rand = false) {
+    public function get_products() {
 
-        if ($rand === true) {
+        if ($this->rand_query === true) {
 
             $ordering = "ORDER BY RAND()";
         } else {
@@ -79,13 +81,13 @@ class get_products {
 
                 $this->calc_pagination();
                 if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") AND quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " AND quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " AND quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } else {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 }
 
                 $result_product = $this->conn->query($sql_product);
