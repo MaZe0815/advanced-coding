@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-5">
         <form action="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/administration/?pid=<?php echo $administration->product_id; ?>#notification" method="post">
             <input type="hidden" name="set_article_data" value="1">
             <label for="product_name">Artikel aktiv oder inaktiv schalten</label>
@@ -18,7 +18,7 @@
             <input class="eingabefeld" type="submit" value="Jetzt aktualisieren!">
         </form>
     </div>
-    <div class="col-6">
+    <div class="col-7">
         <p>Image stuff goes here...</p>
     </div>
 </div>

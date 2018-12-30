@@ -3,16 +3,18 @@ require_once('config.php');
 
 if (isset($_SESSION['user']) && strlen($_SESSION['user']) && (isset($_SESSION['userlevel']) && strlen($_SESSION['userlevel']) && $_SESSION['userlevel'] == 1)) {
 
-    $administration = new administration();
-    $products = $administration->get_admin_products();
+    if (empty($_GET)) {
 
-    if (isset($_GET['p']) & !empty($_GET['p'])) {
+        $administration = new administration();
+        $products = $administration->get_admin_products();
+    } elseif (isset($_GET['p']) & !empty($_GET['p'])) {
+
+        $administration = new administration();
         $administration->curpage = trim($_GET['p']);
         $products = $administration->get_admin_products();
-    }
+    } elseif (isset($_GET['pid']) && strlen($_GET['pid'])) {
 
-    if (isset($_GET['pid']) && strlen($_GET['pid'])) {
-
+        $administration = new administration();
         $administration->product_id = trim($_GET['pid']);
         $products = $administration->get_admin_products();
 
@@ -22,11 +24,21 @@ if (isset($_SESSION['user']) && strlen($_SESSION['user']) && (isset($_SESSION['u
             $products[0] = $_POST;
             $administration->update_admin_product();
 
-            print_r($administration->product_data_error);
+            $administration->product_data_error;
         }
-    } else {
+    } elseif (isset($_GET['pa']) && strlen($_GET['pa'])) {
+
+        $administration = new administration();
         $genres = $administration->get_genres();
         $platforms = $administration->get_manufacturers_platforms();
+
+        if (isset($_POST['add_article_data']) && strlen($_POST['add_article_data'])) {
+
+            $administration->product_data_post = $_POST;
+            $administration->add_admin_product();
+
+            $administration->product_data_error;
+        }
     }
 } else {
 
@@ -58,7 +70,7 @@ if (isset($_SESSION['user']) && strlen($_SESSION['user']) && (isset($_SESSION['u
                     <div class="row">
                         <div class="col-12">
                             <?php
-                            if (!isset($_GET['pid']) && empty($_GET['pid'])) {
+                            if (!isset($_GET['pid']) && empty($_GET['pid']) && !isset($_GET['pa']) && empty($_GET['pa'])) {
 
                                 include 'inc/inc-admin-pagination.php';
                                 include 'inc/inc-admin-articles.php';
@@ -67,6 +79,10 @@ if (isset($_SESSION['user']) && strlen($_SESSION['user']) && (isset($_SESSION['u
 
                                 include 'inc/inc-admin-errors.php';
                                 include 'inc/inc-admin-article.php';
+                            } elseif (isset($_GET['pa']) && !empty($_GET['pa'])) {
+
+                                include 'inc/inc-admin-errors.php';
+                                include 'inc/inc-admin-add-article.php';
                             }
                             ?>
                         </div>
