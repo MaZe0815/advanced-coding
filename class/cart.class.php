@@ -139,7 +139,7 @@ class cart extends get_products {
             return false;
         }
 
-        header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/warenkorb/');
+        header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME);
     }
 
     public function set_final_amounts() {
