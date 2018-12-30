@@ -2,8 +2,8 @@
     <div class="col-5">
         <form action="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/administration/?pid=<?php echo $administration->product_id; ?>#notification" method="post">
             <input type="hidden" name="set_article_data" value="1">
-            <label for="product_name">Artikel aktiv oder inaktiv schalten</label>
-            <select class="eingabefeld" name="active">
+            <label for="active">Artikel aktiv oder inaktiv schalten</label>
+            <select class="eingabefeld <?php if (array_key_exists('active', $administration->product_data_error)) { ?>fehler<?php } ?>" name="active">
                 <option value="1"<?php if ($products[0]['active'] === "1") { ?> selected="selected"<?php } ?>>Online</option>
                 <option value="0"<?php if ($products[0]['active'] === "0") { ?> selected="selected"<?php } ?>>Offline</option>
             </select>

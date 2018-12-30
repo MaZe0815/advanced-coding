@@ -12,6 +12,11 @@ class customer_account {
         'm' => 'Sehr geehrter Herr',
         'default' => 'Sehr geehrte Damen und Herren'
     );
+    private $salutation_short = array(
+        'w' => 'Frau',
+        'm' => 'Herr',
+        'default' => 'Damen und Herren'
+    );
 
     function __construct() {
 
@@ -34,14 +39,27 @@ class customer_account {
 
         if (strlen($this->conn->connect_error) === 0) {
 
-            $sql_user = "SELECT anrede, vorname, nachname, strasse, plz, stadt FROM acs_userlegitimation WHERE id = " . $this->customer_id . " AND dataprotection = '1' LIMIT 1";
+            if (isset($this->customer_id) && $this->customer_id !== false) {
+
+                $sql_user = "SELECT userlevel, anrede, vorname, nachname, strasse, plz, stadt, active FROM acs_userlegitimation WHERE id = " . $this->customer_id . " AND dataprotection = '1' LIMIT 1";
+            } else {
+
+                $sql_user = "SELECT id, userlevel, username, anrede, vorname, nachname, strasse, plz, stadt, dataprotection, double_opt_in, active FROM acs_userlegitimation";
+            }
+
             $result_user = $this->conn->query($sql_user);
 
-            if ($result_user->num_rows > 0) {
+            if ($result_user->num_rows == 1) {
 
                 $row_user = $result_user->fetch_array(MYSQLI_ASSOC);
 
                 $this->customer_data = $row_user;
+            } elseif ($result_user->num_rows >= 1) {
+
+                while ($row_user = $result_user->fetch_array(MYSQLI_ASSOC)) {
+
+                    $this->customer_data[] = $row_user;
+                }
             }
         } else {
 
@@ -81,6 +99,19 @@ class customer_account {
         } else {
 
             $retString = $this->salutation['default'];
+        }
+
+        return $retString;
+    }
+
+    public function gen_short_salutation_string($salutation) {
+
+        if (isset($salutation) && strlen($salutation)) {
+
+            $retString = $this->salutation_short[$salutation];
+        } else {
+
+            $retString = $this->salutation_short['default'];
         }
 
         return $retString;
