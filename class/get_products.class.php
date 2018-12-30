@@ -58,7 +58,7 @@ class get_products {
 
                 $this->article_list = false;
 
-                $sql_product = "SELECT id, img_url, product_name, description, price, pid, gid FROM acs_products WHERE id = " . $this->product_id . "AND quantity > " . $this->quantity_up_to . " AND active = '1' LIMIT 1";
+                $sql_product = "SELECT id, img_url, product_name, description, price, pid, gid FROM acs_products WHERE id = " . $this->product_id . " AND quantity > " . $this->quantity_up_to . " AND active = '1' LIMIT 1";
                 $result_product = $this->conn->query($sql_product);
 
                 if ($result_product->num_rows === 1) {
