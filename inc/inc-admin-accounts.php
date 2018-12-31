@@ -46,7 +46,5 @@
         </tbody>
     </table>
 <?php } else { ?>
-    <tr>
-        <td colspan="3">Leider konnten keine Benutzerkonten ermittelt werden!</td>
-    </tr>
+    <p>Leider konnten keine Benutzerkonten ermittelt werden!</p>
 <?php } ?>

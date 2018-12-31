@@ -37,7 +37,5 @@
         </tbody>
     </table>
 <?php } else { ?>
-    <tr>
-        <td colspan="3">Leider konnten keine Produkte ermittelt werden!</td>
-    </tr>
+    <p>Leider konnten keine Produkte ermittelt werden!</p>
 <?php } ?>
