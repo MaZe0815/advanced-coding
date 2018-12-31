@@ -37,7 +37,11 @@
             <th>Versankosten inkl. Mwst.</th>
             <th>Status</th>
             <th>Datum Bestellung</th>
-            <th>Datum Lieferung</th>
+            <?php if ($customer_orders->customer_orders[$customer_orders->customer_orders_ordernr]['order_shipping']['status'] != "canceled") { ?>
+                <th>Datum Lieferung</th>
+            <?php } else { ?>
+                <th>Datum Storno</th>
+            <?php } ?>
         </tr>
     </thead>
     <tbody>
@@ -54,9 +58,13 @@
                     <td><?php echo $value['amount']; ?> Stk.</td>
                     <td><?php echo number_format($value['price'], 2, ',', '.'); ?> &euro; pro Stk.</td>
                     <td><?php echo number_format($value['vat'], 2, ',', '.'); ?> &euro; pro Stk.</td>
-                    <td><?php echo ucfirst($value['status']); ?></td>
+                    <td><?php echo $customer_orders->humanize_order_state($value['status']); ?></td>
                     <td><?php echo $customer_orders->format_date($value['date_ordered']); ?></td>
-                    <td><?php echo $customer_orders->format_date($value['date_delivered']); ?></td>
+                    <?php if ($value['status'] != "canceled") { ?>
+                        <td><?php echo $customer_orders->format_date($value['date_delivered']); ?></td>
+                    <?php } else { ?>
+                        <td><?php echo $customer_orders->format_date($value['date_canceled']); ?></td>
+                    <?php } ?>
                 </tr>
             <?php } ?>
         <?php } ?>

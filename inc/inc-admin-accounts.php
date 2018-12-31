@@ -1,6 +1,6 @@
 <a href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/administration' ?>" class="button" target="_self">Artikel anzeigen</a>
 <a href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/administration-konten' ?>" class="button" target="_self">Benutzerkonten</a>
-<a href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/administration' ?>" class="button" target="_self">Bestellungen</a>
+<a href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . '/administration-bestellungen' ?>" class="button" target="_self">Bestellungen</a>
 <?php if (is_array($administraction_accounts->customer_data) && count($administraction_accounts->customer_data) > 0) { ?>
     <table class="u-full-width resp_table">
         <thead>
