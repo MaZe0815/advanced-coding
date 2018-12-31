@@ -806,6 +806,17 @@ form {
     }
 }
 
+@media screen and (max-width: 768px) {
+
+    .content.cart div.card {
+        min-height: 430px;
+    }
+
+    .content.cart div.card .button {
+        font-size: 0.6rem;
+    }
+}
+
 .card .manufacturer_platform {
     font-size: 12px;
     margin-bottom: 8px;
