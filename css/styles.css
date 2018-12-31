@@ -47,9 +47,9 @@ div.content h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.2em;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    -ms-word-break: break-all;
-    word-break: break-all;
-    word-break: break-word;
+    -ms-word-break: keep-all;
+    word-break: keep-all;
+    word-break: keep-all;
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -821,7 +821,7 @@ form {
 /* Pagination */
 ul.pagination {
     margin-bottom: 25px;
-    margin-left: 17px;
+    margin-left: 0px;
     font-weight: 300;
     list-style: none;
 }
@@ -838,7 +838,7 @@ ul.pagination li a.button.button-primary {
 .pagination_totals {
     font-size: 12px;
     margin-top: -35px;
-    margin-left: 17px;
+    margin-left: 0px;
 }
 
 .pagination_totals span {
@@ -1287,7 +1287,6 @@ body > table:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(
     padding-right:0.5em;
     padding-top:0.5em;
     padding-bottom:0em;
-    max-width:550px;
 }
 
 .zellelinks {
@@ -1299,7 +1298,6 @@ body > table:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(
 .zellerechts {
     display:inline-block;
     min-width:300px;
-
 }
 
 .fehler	{
@@ -1343,6 +1341,27 @@ input#daten.seitenbreit {
 
 form div.zellerechts input[type="submit"] {
     margin-bottom: 75px;
+}
+
+@media screen and (max-width: 480px) {
+
+    form div.zellerechts label {
+        width: 210px;
+    }
+
+    .fehlerzelle {
+        width: 100%;
+    }
+
+    .zellerechts,
+    .zellelinks {
+        display:inline-block;
+        min-width: 100%;
+    }
+
+    .zeilenwrapper {
+        padding: 0px;
+    }
 }
 
 /* Topnav mobile behavior */
