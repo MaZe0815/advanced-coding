@@ -1375,7 +1375,7 @@ form div.zellerechts input[type="submit"] {
     font-size: 1.6rem;
 }
 
-@media screen and (max-width: 685px) {
+@media screen and (max-width: 900px) {
 
     .topnav a:not(:first-child) {
         display: none;
@@ -1391,7 +1391,7 @@ form div.zellerechts input[type="submit"] {
     }
 }
 
-@media screen and (max-width: 685px) {
+@media screen and (max-width: 900px) {
 
     .topnav.responsive {
         position: relative;
@@ -1410,7 +1410,7 @@ form div.zellerechts input[type="submit"] {
     }
 }
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 1090px) {
 
     #input_inline_search {
         visibility: hidden;
