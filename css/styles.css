@@ -1494,7 +1494,7 @@ form div.zellerechts input[type="submit"] {
     .resp_table tr,
     .resp_table th,
     .resp_table td {
-        display: block;
+        display: block !important;
     }
 
     .resp_table {
