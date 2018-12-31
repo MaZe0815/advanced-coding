@@ -292,7 +292,7 @@ div.footer {
     font-weight: 300;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 685px) {
 
     .ac-right {
         float: none !important;
@@ -313,7 +313,7 @@ div.footer {
     }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 685px) {
 
     .ac-right {
         float: none !important;
