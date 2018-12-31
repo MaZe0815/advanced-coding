@@ -54,9 +54,6 @@ div.content h1, h2, h3, h4, h5, h6 {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* Simple grid system */
@@ -1007,7 +1004,6 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 #slideshow a img {
     float: left;
     display: block;
-    margin-right: 10px;
     border: none;
     max-width: 80px;
     height: auto;
@@ -1018,6 +1014,8 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
     transition: transform .2s ease-in-out;
     transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
     margin-top: 15px;
+    padding: 2px;
+    margin: 5px;
 }
 
 @media screen and (max-width: 1489px) {
@@ -1040,13 +1038,19 @@ div#inline_search.inline_search a.close_inline_search:hover:active {
 
 @media screen and (max-width: 1158px) {
     #slideshow a img {
-        max-width: 38px;
+        max-width: 60px;
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 480px) {
     #slideshow a img {
         max-width: 80px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #slideshow a img {
+        max-width: 50px;
     }
 }
 
