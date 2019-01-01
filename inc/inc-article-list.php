@@ -1,7 +1,7 @@
 <div class="col-3 article_col">
     <div class="card">
         <p>
-            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filer löschen</a>
+            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filter l&ouml;schen</a>
         </p>
         <p>Welche Konsole?</p>
         <?php foreach ($product_platforms as $key => $value) { ?>
@@ -25,7 +25,7 @@
             ?>><br>
                <?php } ?>
         <p>
-            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filer löschen</a>
+            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filer l&ouml;schen</a>
         </p>
     </div>
 </div>
