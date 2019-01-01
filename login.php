@@ -42,6 +42,7 @@
                                 if ($_POST['username'] != '' && $_POST['password'] != '') {
                                     $fehler['kein_account'] = 'Bitte pr&uuml;fen Sie Ihre Anmeldedaten';
                                     $verbindung = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+                                    mysqli_set_charset($verbindung, "utf8");
 
                                     $query = "SELECT id,userlevel,password_hash,vorname,nachname from acs_userlegitimation WHERE username='" . $_POST['username'] . "' AND (dataprotection = '1' AND double_opt_in = '1') AND active = '1'";
                                     $result = mysqli_query($verbindung, $query);

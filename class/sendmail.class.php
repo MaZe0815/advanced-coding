@@ -43,7 +43,7 @@ class sendmail {
         try {
 
             $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-            $this->conn->set_charset("utf8");
+            //$this->conn->set_charset("utf8");
 
             if ($this->conn->connect_error) {
 
@@ -141,7 +141,12 @@ class sendmail {
         if (is_array($row_user) && (isset($row_user['anrede']) && strlen($row_user['anrede'])) && (isset($row_user['nachname']) && strlen($row_user['nachname']))) {
 
             $retString = $this->salutation[$row_user['anrede']];
-            $retString .= ' <span style="color: #6cf;">' . $row_user['nachname'] . '</span>';
+
+            if (isset($this->send_mail) && $this->send_mail === false) {
+                $retString .= ' <span style="color: #6cf;">' . utf8_encode($row_user['nachname']) . '</span>';
+            } else {
+                $retString .= ' <span style="color: #6cf;">' . $row_user['nachname'] . '</span>';
+            }
         } else {
 
             $retString = ' <span style="color: #6cf;">' . $this->salutation['default'] . '</span>';
