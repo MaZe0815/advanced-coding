@@ -19,6 +19,23 @@
         </form>
     </div>
     <div class="col-7">
-        <p>Image stuff goes here...</p>
+        <div>
+            <div class="large_detail_wrapper">
+                <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[0]['images'][0]; ?>" alt="<?php echo $products[0]['product_name']; ?>" id="large_detail">
+            </div>
+            <div id="slideshow">
+                <?php
+                for ($i = 0; $i <= 2; $i++) {
+                    if (array_key_exists($i, $products[0]['images'])) {
+                        ?>
+                        <a onclick="show_large('<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[0]['images'][$i]; ?>');">
+                            <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[0]['images'][$i]; ?>" alt="<?php echo $products[0]['product_name']; ?>">
+                        </a>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
+        </div>
     </div>
 </div>

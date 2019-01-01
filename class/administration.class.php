@@ -52,6 +52,7 @@ class administration extends get_products {
                     $row_product[0] = $result_product->fetch_array(MYSQLI_ASSOC);
                     $row_product[0]['manucafturer_platform'] = parent::get_manufacturer_platform($row_product[0]['pid']);
                     $row_product[0]['genre'] = parent::get_genre($row_product[0]['gid']);
+                    $row_product[0]['images'] = parent::get_article_pics($row_product[0]['id']);
 
                     return $row_product;
                 } else {
@@ -72,6 +73,7 @@ class administration extends get_products {
 
                         $row['manucafturer_platform'] = parent::get_manufacturer_platform($row['pid']);
                         $row['genre'] = parent::get_genre($row['gid']);
+                        $row['images'] = $this->get_article_pics($row['id']);
                         $row_product[] = $row;
                     }
 
@@ -118,7 +120,7 @@ class administration extends get_products {
 
             if (is_array($this->product_data_error) && count($this->product_data_error) === 0) {
 
-                $sql_insert = "INSERT INTO acs_products (id, product_name, description, price, quantity, pid, gid, date_created, date_updated, active) VALUES ('', '', '" . $this->product_data_post['product_name'] . "', '" . $this->product_data_post['description'] . "', " . $this->product_data_post['price'] . ", " . $this->product_data_post['quantity'] . ", " . $this->product_data_post['pid'] . ", " . $this->product_data_post['gid'] . ", now(), '', " . $this->product_data_post['active'] . ")";
+                $sql_insert = "INSERT INTO acs_products (id, product_name, description, price, quantity, pid, gid, date_created, date_updated, active) VALUES ('', '" . $this->product_data_post['product_name'] . "', '" . $this->product_data_post['description'] . "', " . $this->product_data_post['price'] . ", " . $this->product_data_post['quantity'] . ", " . $this->product_data_post['pid'] . ", " . $this->product_data_post['gid'] . ", now(), '', " . $this->product_data_post['active'] . ")";
                 $this->conn->query($sql_insert);
 
                 header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/administration?pa=true&s=1#notification');

@@ -35,7 +35,5 @@
             <input class="eingabefeld" type="submit" value="Jetzt anlegen!">
         </form>
     </div>
-    <div class="col-7">
-        <p>Image stuff goes here...</p>
-    </div>
+    <div class="col-7"></div>
 </div>
