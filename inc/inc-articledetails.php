@@ -2,7 +2,7 @@
     ?>
     <div class="col-4">
         <div class="card">
-            <div style="min-height: 408px;">
+            <div class="large_detail_wrapper">
                 <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[$key]['images'][0]; ?>" alt="<?php echo $products[$key]['product_name']; ?>" id="large_detail">
             </div>
             <div id="slideshow">
@@ -13,7 +13,8 @@
                         <a onclick="show_large('<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[$key]['images'][$i]; ?>');">
                             <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[$key]['images'][$i]; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
                         </a>
-                    <?php }
+                    <?php
+                    }
                 }
                 ?>
             </div>
