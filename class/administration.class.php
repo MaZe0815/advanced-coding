@@ -44,7 +44,7 @@ class administration extends get_products {
 
                 $this->article_list = false;
 
-                $sql_product = "SELECT id, img_url, product_name, description, price, pid, gid, quantity, active FROM acs_products WHERE id = " . $this->product_id . " LIMIT 1";
+                $sql_product = "SELECT id, product_name, description, price, pid, gid, quantity, active FROM acs_products WHERE id = " . $this->product_id . " LIMIT 1";
                 $result_product = $this->conn->query($sql_product);
 
                 if ($result_product->num_rows === 1) {
@@ -62,7 +62,7 @@ class administration extends get_products {
 
                 parent::calc_pagination();
 
-                $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid, quantity, active FROM acs_products WHERE quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                $sql_product = "SELECT id, gid, product_name, description, price, pid, gid, quantity, active FROM acs_products WHERE quantity > " . $this->quantity_up_to . " " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
 
                 $result_product = $this->conn->query($sql_product);
 
@@ -118,7 +118,7 @@ class administration extends get_products {
 
             if (is_array($this->product_data_error) && count($this->product_data_error) === 0) {
 
-                $sql_insert = "INSERT INTO acs_products (id, img_url, product_name, description, price, quantity, pid, gid, date_created, date_updated, active) VALUES ('', '', '" . $this->product_data_post['product_name'] . "', '" . $this->product_data_post['description'] . "', " . $this->product_data_post['price'] . ", " . $this->product_data_post['quantity'] . ", " . $this->product_data_post['pid'] . ", " . $this->product_data_post['gid'] . ", now(), '', " . $this->product_data_post['active'] . ")";
+                $sql_insert = "INSERT INTO acs_products (id, product_name, description, price, quantity, pid, gid, date_created, date_updated, active) VALUES ('', '', '" . $this->product_data_post['product_name'] . "', '" . $this->product_data_post['description'] . "', " . $this->product_data_post['price'] . ", " . $this->product_data_post['quantity'] . ", " . $this->product_data_post['pid'] . ", " . $this->product_data_post['gid'] . ", now(), '', " . $this->product_data_post['active'] . ")";
                 $this->conn->query($sql_insert);
 
                 header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME . '/administration?pa=true&s=1#notification');

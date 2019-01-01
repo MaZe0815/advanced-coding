@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="limited">
-                    <img src="<?php echo $products[$key]['rand_image']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
+                    <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[$key]['images'][0]; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
                 </div>
                 <div class="cart_details">
                     <a class="del_cart_item" href="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME; ?>/warenkorb?d=<?php echo $products[$key]['item']; ?>">

@@ -58,3 +58,4 @@ Temporary Items
 # Dummy and random product covers
 /img/covers/*
 !/img/covers/.gitkeep
+!/img/covers/350x408.png

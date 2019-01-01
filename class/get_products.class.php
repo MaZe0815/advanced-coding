@@ -17,7 +17,8 @@ class get_products {
     public $filter_console;
     public $filter_pagination_adds;
     private $value_vat = 19;
-    private $cover_dir = "img/covers";
+    private $cover_dir_root = "img/covers";
+    private $cover_dir = "img/covers/article_image_";
     private $quantity_up_to = 6;
     public $rand_query = false;
 
@@ -58,7 +59,7 @@ class get_products {
 
                 $this->article_list = false;
 
-                $sql_product = "SELECT id, img_url, product_name, description, price, pid, gid FROM acs_products WHERE id = " . $this->product_id . " AND quantity > " . $this->quantity_up_to . " AND active = '1' LIMIT 1";
+                $sql_product = "SELECT id, product_name, description, price, pid, gid FROM acs_products WHERE id = " . $this->product_id . " AND quantity > " . $this->quantity_up_to . " AND active = '1' LIMIT 1";
                 $result_product = $this->conn->query($sql_product);
 
                 if ($result_product->num_rows === 1) {
@@ -67,10 +68,7 @@ class get_products {
                     $row_product[0]['manucafturer_platform'] = $this->get_manufacturer_platform($row_product[0]['pid']);
                     $row_product[0]['genre'] = $this->get_genre($row_product[0]['gid']);
                     $row_product[0]['gross_price'] = $this->calc_vat($row_product[0]['price']);
-                    $row_product[0]['rand_image'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
-                    $row_product[0]['rand_image_1'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
-                    $row_product[0]['rand_image_2'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
-                    $row_product[0]['rand_image_3'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
+                    $row_product[0]['images'] = $this->get_article_pics($row_product[0]['id']);
 
                     return $row_product;
                 } else {
@@ -81,13 +79,13 @@ class get_products {
 
                 $this->calc_pagination();
                 if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, product_name, description, price, pid, gid FROM acs_products WHERE (`pid` = " . $this->filter_console . " AND `gid` = " . $this->filter_genre . ") AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, product_name, description, price, pid, gid FROM acs_products WHERE `gid` = " . $this->filter_genre . " AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } elseif (isset($this->filter_console) && !empty($this->filter_console)) {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, product_name, description, price, pid, gid FROM acs_products WHERE `pid` = " . $this->filter_console . " AND quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 } else {
-                    $sql_product = "SELECT id, gid, img_url, product_name, description, price, pid, gid FROM acs_products WHERE quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
+                    $sql_product = "SELECT id, gid, product_name, description, price, pid, gid FROM acs_products WHERE quantity > " . $this->quantity_up_to . " AND active = '1' " . $ordering . " LIMIT " . $this->start . ", " . $this->product_limit;
                 }
 
                 $result_product = $this->conn->query($sql_product);
@@ -99,7 +97,8 @@ class get_products {
                         $row['manucafturer_platform'] = $this->get_manufacturer_platform($row['pid']);
                         $row['genre'] = $this->get_genre($row['gid']);
                         $row['gross_price'] = $this->calc_vat($row['price']);
-                        $row['rand_image'] = $this->random_pic();
+                        $row['images'] = $this->get_article_pics($row['id']);
+
                         $row_product[] = $row;
                     }
 
@@ -261,10 +260,26 @@ class get_products {
         }
     }
 
+    public function get_article_pics($aid) {
+
+        $dir = $this->cover_dir . sprintf('%06d', $aid);
+
+        if (is_dir($dir)) {
+
+            $arr_images = glob($dir . '/*.jpg');
+            return $arr_images;
+        } else {
+
+            $placeholder[0] = $this->cover_dir_root . "/350x408.png";
+
+            return $placeholder;
+        }
+    }
+
     public function random_pic() {
 
         $arrImage = array();
-        $dir = $this->cover_dir; # Directory containing images
+        $dir = $this->cover_dir;
 
         if (is_dir($dir)) {
 
@@ -275,11 +290,11 @@ class get_products {
                 return $arrImage[array_rand($arrImage)];
             } else {
 
-                return "https://via.placeholder.com/350x408";
+                return $this->cover_dir_root . "/350x408.png";
             }
         } else {
 
-            return "https://via.placeholder.com/350x408";
+            return $this->cover_dir_root . "/350x408.png";
         }
     }
 

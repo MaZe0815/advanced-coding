@@ -71,7 +71,7 @@ class cart extends get_products {
 
         if (strlen($this->conn->connect_error) === 0) {
 
-            $sql_get = "SELECT acs_orders.item, acs_orders.amount, acs_products.img_url, acs_products.product_name, acs_products.description, acs_products.price, acs_products.pid, acs_products.gid FROM acs_orders LEFT JOIN acs_products ON acs_orders.item = acs_products.id WHERE acs_products.id = acs_orders.item AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
+            $sql_get = "SELECT acs_orders.item, acs_orders.amount, acs_products.product_name, acs_products.description, acs_products.price, acs_products.pid, acs_products.gid FROM acs_orders LEFT JOIN acs_products ON acs_orders.item = acs_products.id WHERE acs_products.id = acs_orders.item AND order_number = '" . $_SESSION['order']['order_number'] . "' and status = '" . $this->order_status . "'";
             $result_get = $this->conn->query($sql_get);
 
             if ($result_get->num_rows === 1) {
@@ -82,7 +82,7 @@ class cart extends get_products {
                 $row_items[0]['genre'] = parent::get_genre($row_items[0]['gid']);
                 $row_items[0]['gross_price'] = parent::calc_vat($row_items[0]['price']);
                 $row_items[0]['gross_price_sum'] = $this->calc_item_sum_price($row_items[0]['gross_price'], $row_items[0]['amount']);
-                $row_items[0]['rand_image'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . parent::random_pic();
+                $row_items[0]['images'] = $this->get_article_pics($row_items[0]['item']);
 
                 return $row_items;
             } elseif ($result_get->num_rows >= 1) {
@@ -93,7 +93,7 @@ class cart extends get_products {
                     $row['genre'] = parent::get_genre($row['gid']);
                     $row['gross_price'] = parent::calc_vat($row['price']);
                     $row['gross_price_sum'] = $this->calc_item_sum_price($row['gross_price'], $row['amount']);
-                    $row['rand_image'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $this->random_pic();
+                    $row['images'] = $this->get_article_pics($row['item']);
                     $row_items[] = $row;
                 }
 

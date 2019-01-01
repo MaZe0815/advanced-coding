@@ -2,17 +2,20 @@
     ?>
     <div class="col-4">
         <div class="card">
-            <img src="<?php echo $products[$key]['rand_image']; ?>" alt="<?php echo $products[$key]['product_name']; ?>" id="large_detail">
+            <div style="min-height: 408px;">
+                <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[$key]['images'][0]; ?>" alt="<?php echo $products[$key]['product_name']; ?>" id="large_detail">
+            </div>
             <div id="slideshow">
-                <a onclick="show_large('<?php echo $products[$key]['rand_image_1']; ?>');">
-                    <img src="<?php echo $products[$key]['rand_image_1']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
-                </a>
-                <a onclick="show_large('<?php echo $products[$key]['rand_image_2']; ?>');">
-                    <img src="<?php echo $products[$key]['rand_image_2']; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
-                </a>
-                <a onclick="show_large('<?php echo $products[$key]['rand_image_3']; ?>');">
-                    <img src="<?php echo $products[$key]['rand_image_3']; ?>"  alt="<?php echo $products[$key]['product_name']; ?>">
-                </a>
+                <?php
+                for ($i = 0; $i <= 2; $i++) {
+                    if (array_key_exists($i, $products[$key]['images'])) {
+                        ?>
+                        <a onclick="show_large('<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[$key]['images'][$i]; ?>');">
+                            <img src="<?php echo HTTP_HOST . ROOT_URL . PROJECT_NAME . "/" . $products[$key]['images'][$i]; ?>" alt="<?php echo $products[$key]['product_name']; ?>">
+                        </a>
+                    <?php }
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -29,7 +32,7 @@
             </div>
             <div class="description_details crop">
                 <p class="description">
-                    <?php echo nl2br($products[$key]['description']); ?>
+    <?php echo nl2br($products[$key]['description']); ?>
                 </p>
             </div>
             <div class="product_sub">
