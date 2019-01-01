@@ -1,5 +1,8 @@
 <div class="col-3 article_col">
     <div class="card">
+        <p>
+            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filer löschen</a>
+        </p>
         <p>Welche Konsole?</p>
         <?php foreach ($product_platforms as $key => $value) { ?>
             <label for="p_<?php echo $product_platforms[$key]['platformID']; ?>"><?php echo $product_platforms[$key]['manufacturer'] . " " . $product_platforms[$key]['platform']; ?></label>
@@ -21,6 +24,9 @@
             };
             ?>><br>
                <?php } ?>
+        <p>
+            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filer löschen</a>
+        </p>
     </div>
 </div>
 <?php

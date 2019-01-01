@@ -1563,3 +1563,19 @@ form div.zellerechts input[type="submit"] {
         border-bottom: 2px #E1E1E1 solid;
     }
 }
+
+.clear_filters {
+    font-size: 0.7rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.clear_filters i {
+    position: relative;
+    bottom: 1px;
+    color: red;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 14px;
+    font-size: inherit;
+}

@@ -250,13 +250,13 @@ class get_products {
 
         if ((isset($this->filter_genre) && !empty($this->filter_genre)) && (isset($this->filter_console) && !empty($this->filter_console))) {
 
-            return $param_string = "&c=" . $this->filter_console . "&g=" . $this->filter_genre . "#product-listing";
+            return $param_string = "&c=" . $this->filter_console . "&g=" . $this->filter_genre;
         } else if (isset($this->filter_console) && !empty($this->filter_console)) {
 
-            return $param_string = "&c=" . $this->filter_console . "#product-listing";
+            return $param_string = "&c=" . $this->filter_console;
         } elseif (isset($this->filter_genre) && !empty($this->filter_genre)) {
 
-            return $param_string = "&g=" . $this->filter_genre . "#product-listing";
+            return $param_string = "&g=" . $this->filter_genre;
         }
     }
 

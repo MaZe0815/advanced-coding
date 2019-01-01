@@ -40,14 +40,33 @@ function display_function(id, cid) {
 /* Global filter function for get params */
 function filter_function(c_m, id) {
 
+    url = new URL(window.location.href);
+
+    console.log(url.searchParams.get('test'));
+
     if (c_m === "g") {
 
-        insert_param("g", id);
-    }
+        if (url.searchParams.get('p')) {
 
-    if (c_m === "p") {
+            history.pushState({}, null, location.href.split('?')[0]);
+        }
+
+        insert_param("g", id);
+    } else if (c_m === "p") {
+
+        if (url.searchParams.get('p')) {
+
+            history.pushState({}, null, location.href.split('?')[0]);
+        }
 
         insert_param("c", id);
+    } else if (c_m === "p_g") {
+
+        if (location.href.includes('?')) {
+
+            history.pushState({}, null, location.href.split('?')[0]);
+            window.location.reload(true);
+        }
     }
 }
 
