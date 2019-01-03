@@ -25,7 +25,7 @@
             ?>><br>
                <?php } ?>
         <p>
-            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filer l&ouml;schen</a>
+            <a class="clear_filters" onclick="filter_function('p_g', 0);" > <i class="fa fa-close"></i> Alle Filter l&ouml;schen</a>
         </p>
     </div>
 </div>
