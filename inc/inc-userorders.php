@@ -19,7 +19,7 @@
             <?php } ?>
         <?php } else { ?>
             <tr>
-                <td colspan="3">Leider konnten keine bisherigen Bestellungen ermittelt werden!</td>
+                <td colspan="4" style="font-weight: 300; font-style: italic;">Leider konnten keine bisherigen Bestellungen ermittelt werden!</td>
             </tr>
         <?php } ?>
     </tbody>
