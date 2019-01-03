@@ -26,9 +26,9 @@ if (isset($_GET['pid']) && strlen($_GET['pid'])) {
         $set_meta_tags = new set_meta_tags();
 
         if (isset($get_products->article_list) && $get_products->article_list === true) {
-            $set_meta_tags->seo_array['title'] = "Seite " . $get_products->curpage . " - Artikel&uuml;bersicht - Shop";
+            $set_meta_tags->seo_array['title'] = "Seite " . $get_products->curpage . " - Artikel&uuml;bersicht - Placeholder - Shop";
         } else {
-            $set_meta_tags->seo_array['title'] = $products[0]['product_name'] . " - Artikeldeteialseite - Shop";
+            $set_meta_tags->seo_array['title'] = $products[0]['product_name'] . " - Artikeldeteialseite - Placeholder - Shop";
         }
         $set_meta_tags->seo_array['description'] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
         $set_meta_tags->seo_array['keywords'] = "Lorem, ipsum, dolor, sit, amet, consectetuer, adipiscin, elit, Aenean commodo";

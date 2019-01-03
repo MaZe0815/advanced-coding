@@ -22,7 +22,7 @@ if (isset($_SESSION['user']) && strlen($_SESSION['user'])) {
         <?php include 'inc/inc-meta.php'; ?>
         <?php
         $set_meta_tags = new set_meta_tags();
-        $set_meta_tags->seo_array['title'] = "Logoout - Shop";
+        $set_meta_tags->seo_array['title'] = "Logoout - Placeholder - Shop";
         $set_meta_tags->seo_array['description'] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
         $set_meta_tags->seo_array['keywords'] = "Lorem, ipsum, dolor, sit, amet, consectetuer, adipiscin, elit, Aenean commodo";
         $set_meta_tags->seo_array['index_allow'] = false;
