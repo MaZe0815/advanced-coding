@@ -13,7 +13,7 @@
                 <th>Strasse</th>
                 <th>PLZ</th>
                 <th>Stadt</th>
-                <th>Anzahl</th>
+                <th>Artikel</th>
                 <th>Datum</th>
                 <th>Details</th>
             </tr>
