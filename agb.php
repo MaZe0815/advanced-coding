@@ -24,7 +24,7 @@
                         <div class="col-12">
                             <h1>Allgemeine Gesch&auml;ftsbedingungen</h1>
                             <h2>&sect; 1 Grundlegende Bestimmungen</h2>
-                            <p>1) Die nachstehenden Gesch&auml;ftsbedingungen gelten f&uuml;r Vertr&auml;ge die &uuml;ber <?php echo HTTP_HOST; ?> geschlossen werden. Soweit nicht anders vereinbart, wird eigens von Ihnen verwendeten Bedingungen widersprochen.</p>
+                            <p>1) Die nachstehenden Gesch&auml;ftsbedingungen gelten f&uuml;r Vertr&auml;ge die &uuml;ber "<strong><?php echo HTTP_HOST; ?></strong>" geschlossen werden. Soweit nicht anders vereinbart, wird eigens von Ihnen verwendeten Bedingungen widersprochen.</p>
                             <p>2) Verbraucher im Sinne dieser Regelung ist jede nat&uuml;rliche Person, die ein Rechtsgesch&auml;ft mit privaten Anliegen abschlie&szlig;t. Unternehmer ist jede nat&uuml;rliche oder juristische Person, die bei Abschluss des Rechtsgesch&auml;fts im Sinne ihrer beruflichen oder gewerblichen Interessen handelt.</p>
                             <hr>
                             <h2>&sect; 2 Zustandekommen des Vertrages</h2>
