@@ -52,6 +52,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Sublime Text Project Files
+/.idea/
+/.idea/*
+
 # _Stuff
 /_Stuff
 
