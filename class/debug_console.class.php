@@ -7,6 +7,9 @@ class debug_console {
 
     public $debug_data;
 
+    /**
+     * debug_console constructor.
+     */
     function __construct() {
 
         try {
@@ -25,9 +28,10 @@ class debug_console {
     }
 
     /**
-     * Renders debug outout in console
+     *
      */
     function debug_console_output() {
+
         echo "<script>\r\n//<![CDATA[\r\nif(!console){var console={log:function(){}}}";
         $output = explode("\n", print_r($this->debug_data, true));
         foreach ($output as $line) {

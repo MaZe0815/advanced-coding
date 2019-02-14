@@ -23,7 +23,7 @@ class sendmail {
     private $from_email_name = 'Bestellungen (Placeholder Shop)';
     private $no_reply_email = 'noreply@example.biz';
     private $no_reply_email_name = 'Bestellungen (Placeholder Shop)';
-    protected $admin_email_bcc = array('markzembrzycki@gmx.de');
+    protected $admin_email_bcc = array();
     private $root_url;
     private $url_web_version = '/webversion.php?w=###EMAILINGTEMPLATE###&amp;u=###USER###';
     private $url_web_version_params;
@@ -36,6 +36,9 @@ class sendmail {
     private $id_delemiter = ':';
     private $opt_secret = 'PlaceholderShop';
 
+    /**
+     * sendmail constructor.
+     */
     function __construct() {
 
         $this->root_url = HTTP_HOST . ROOT_URL . PROJECT_NAME;
@@ -55,6 +58,9 @@ class sendmail {
         }
     }
 
+    /**
+     * @throws phpmailerException
+     */
     function gen_email() {
 
         if (isset($this->send_mail) && $this->send_mail === true && (HTTP_HOST === "https://acws191.erlenkaemper.eu" || HTTP_HOST === "http://acws191.erlenkaemper.eu")) {
@@ -99,6 +105,9 @@ class sendmail {
         }
     }
 
+    /**
+     *
+     */
     function replace_placeholder_markup() {
 
         if (isset($this->send_mail) && $this->send_mail === true) {
@@ -119,6 +128,9 @@ class sendmail {
         $this->emailing_message = str_replace("###USER###", $this->user, $this->emailing_message);
     }
 
+    /**
+     * @return mixed|string
+     */
     function gen_salutation_string() {
 
         if (isset($this->mail_to) && (strlen($this->mail_to) && $this->send_mail === true)) {
@@ -155,6 +167,9 @@ class sendmail {
         return $retString;
     }
 
+    /**
+     * @return string
+     */
     function gen_hash() {
 
         if (isset($this->mail_to_id) && strlen($this->mail_to_id)) {
@@ -192,6 +207,9 @@ class sendmail {
         }
     }
 
+    /**
+     * @return array
+     */
     function decr_hash() {
 
         if (isset($this->id_encoded) && strlen($this->id_encoded)) {
@@ -218,6 +236,9 @@ class sendmail {
         }
     }
 
+    /**
+     *
+     */
     function set_double_opt_in() {
 
         $sql_user = "SELECT id FROM acs_userlegitimation WHERE id = " . $this->id_decoded[0] . " and dataprotection = '1' LIMIT 1";

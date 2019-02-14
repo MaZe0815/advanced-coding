@@ -15,6 +15,9 @@ class customer_orders extends cart {
     public $order_total = 0;
     public $order_total_shipping = 0;
 
+    /**
+     * customer_orders constructor.
+     */
     function __construct() {
 
         try {
@@ -32,6 +35,9 @@ class customer_orders extends cart {
         }
     }
 
+    /**
+     * @return array|bool
+     */
     public function get_carts() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -87,6 +93,10 @@ class customer_orders extends cart {
         }
     }
 
+    /**
+     * @param $salutation
+     * @return mixed
+     */
     public function gen_salutation_string($salutation) {
 
         if (($salutation === "w" || $salutation === "m")) {
@@ -100,6 +110,10 @@ class customer_orders extends cart {
         return $retString;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function get_article($id) {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -115,6 +129,9 @@ class customer_orders extends cart {
         }
     }
 
+    /**
+     *
+     */
     public function calc_order_amounts() {
 
         foreach ($this->customer_orders[$this->customer_orders_ordernr] as $key => $value) {
@@ -128,6 +145,10 @@ class customer_orders extends cart {
         $this->order_total = $this->order_total + $this->order_total_shipping;
     }
 
+    /**
+     * @param $date
+     * @return false|string
+     */
     public function format_date($date) {
 
         $date = date("d.m.Y", strToTime($date));
@@ -141,6 +162,10 @@ class customer_orders extends cart {
         };
     }
 
+    /**
+     * @param $state
+     * @return string
+     */
     public function humanize_order_state($state) {
 
         switch ($state) {

@@ -12,6 +12,9 @@ class cart extends get_products {
     public $order_user;
     public $order_id;
 
+    /**
+     * cart constructor.
+     */
     function __construct() {
 
         try {
@@ -29,6 +32,11 @@ class cart extends get_products {
         }
     }
 
+    /**
+     * @param $id
+     * @param $quantity
+     * @return bool
+     */
     public function add_to_cart($id, $quantity) {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -67,6 +75,9 @@ class cart extends get_products {
         }
     }
 
+    /**
+     * @return array|bool
+     */
     public function get_cart() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -108,6 +119,10 @@ class cart extends get_products {
         }
     }
 
+    /**
+     * @param bool $item
+     * @return bool
+     */
     public function delete_cart($item = false) {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -142,6 +157,9 @@ class cart extends get_products {
         header('Location: ' . HTTP_HOST . ROOT_URL . PROJECT_NAME);
     }
 
+    /**
+     * @return bool
+     */
     public function set_final_amounts() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -167,6 +185,9 @@ class cart extends get_products {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function set_final_shipping_address() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -191,6 +212,10 @@ class cart extends get_products {
         }
     }
 
+    /**
+     * @param $resp_status
+     * @return bool
+     */
     public function check_out_order($resp_status) {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -212,11 +237,19 @@ class cart extends get_products {
         }
     }
 
+    /**
+     * @param $price
+     * @param $amount
+     * @return float|int
+     */
     private function calc_item_sum_price($price, $amount) {
 
         return ($price * $amount);
     }
 
+    /**
+     * @return bool
+     */
     public function calc_cart_amounts() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -248,6 +281,9 @@ class cart extends get_products {
         }
     }
 
+    /**
+     * @return string
+     */
     private function gen_order_number() {
 
         return $this->order_praefix . substr(md5(rand()), 0, $this->ordernr_length);

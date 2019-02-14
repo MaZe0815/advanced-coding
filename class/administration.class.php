@@ -17,6 +17,9 @@ class administration extends get_products {
     public $product_data_post;
     public $product_data_error = array();
 
+    /**
+     * administration constructor.
+     */
     function __construct() {
 
         try {
@@ -34,6 +37,9 @@ class administration extends get_products {
         }
     }
 
+    /**
+     * @return array|bool
+     */
     public function get_admin_products() {
 
         $ordering = "ORDER BY product_name asc";
@@ -90,6 +96,9 @@ class administration extends get_products {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function update_admin_product() {
 
         $this->product_data_post = array_map('trim', $this->product_data_post);
@@ -111,6 +120,9 @@ class administration extends get_products {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function add_admin_product() {
 
         $this->product_data_post = array_map('trim', $this->product_data_post);
@@ -132,6 +144,10 @@ class administration extends get_products {
         }
     }
 
+    /**
+     * @param $state
+     * @return string
+     */
     public function humanize_active_state($state) {
 
         if ($state === "1") {
@@ -143,6 +159,9 @@ class administration extends get_products {
         }
     }
 
+    /**
+     *
+     */
     public function check_errors() {
 
         $this->product_data_post['quantity'] = (int) $this->product_data_post['quantity'];

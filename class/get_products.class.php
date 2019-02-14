@@ -22,6 +22,9 @@ class get_products {
     private $quantity_up_to = 6;
     public $rand_query = false;
 
+    /**
+     * get_products constructor.
+     */
     function __construct() {
 
         try {
@@ -39,6 +42,9 @@ class get_products {
         }
     }
 
+    /**
+     * @return array|bool
+     */
     public function get_products() {
 
         if ($this->rand_query === true) {
@@ -115,6 +121,10 @@ class get_products {
         }
     }
 
+    /**
+     * @param $pid
+     * @return bool|mixed
+     */
     public function get_manufacturer_platform($pid) {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -131,6 +141,9 @@ class get_products {
         }
     }
 
+    /**
+     * @return array|bool
+     */
     public function get_manufacturers_platforms() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -150,6 +163,10 @@ class get_products {
         }
     }
 
+    /**
+     * @param $gid
+     * @return bool|mixed
+     */
     public function get_genre($gid) {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -167,6 +184,9 @@ class get_products {
         }
     }
 
+    /**
+     * @return array|bool
+     */
     public function get_genres() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -186,6 +206,9 @@ class get_products {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function calc_pagination() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -216,12 +239,22 @@ class get_products {
         }
     }
 
+    /**
+     * @param $price
+     * @return float|int
+     */
     public function calc_vat($price) {
 
         $gross_price = $price + ( ( $price / 100 ) * $this->value_vat );
         return $gross_price;
     }
 
+    /**
+     * @param $str
+     * @param int $start
+     * @param int $words
+     * @return string
+     */
     public function word_cut_string($str, $start = 0, $words = 15) {
 
         $arr = preg_split("/[\s]+/", $str, $words + 1);
@@ -229,6 +262,12 @@ class get_products {
         return join(' ', $arr);
     }
 
+    /**
+     * @param $key
+     * @param string $default
+     * @param string $data_type
+     * @return int|string
+     */
     private function getv($key, $default = '', $data_type = '') {
 
         $param = (isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default);
@@ -240,6 +279,9 @@ class get_products {
         return $param;
     }
 
+    /**
+     * @return string
+     */
     private function gen_pagaination_param() {
 
         $current_page_v = $this->getv('p');
@@ -260,6 +302,10 @@ class get_products {
         }
     }
 
+    /**
+     * @param $aid
+     * @return array|false
+     */
     public function get_article_pics($aid) {
 
         $dir = $this->cover_dir . sprintf('%06d', $aid);
@@ -276,6 +322,9 @@ class get_products {
         }
     }
 
+    /**
+     * @return string
+     */
     public function random_pic() {
 
         $arrImage = array();

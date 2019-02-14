@@ -16,6 +16,9 @@ class checkout {
     public $cpt_response_frontend = false;
     public $cpt_response_frontend_state = "NOK";
 
+    /**
+     * checkout constructor.
+     */
     function __construct() {
 
         try {
@@ -33,6 +36,9 @@ class checkout {
         }
     }
 
+    /**
+     *
+     */
     public function set_heidelpay_basics() {
 
         $this->heidelpay_params['SECURITY.SENDER'] = "31HA07BC810C91F08643A5D477BDD7C0";
@@ -53,6 +59,9 @@ class checkout {
         $this->heidelpay_params['FRONTEND.CSS_PATH'] = HTTP_HOST . ROOT_URL . PROJECT_NAME . "/css/styles.css";
     }
 
+    /**
+     * @return bool
+     */
     public function set_user() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -79,6 +88,9 @@ class checkout {
         }
     }
 
+    /**
+     *
+     */
     public function set_amounts() {
 
         $cart = new cart();
@@ -99,6 +111,9 @@ class checkout {
         }
     }
 
+    /**
+     *
+     */
     public function init_payments() {
 
         $this->cpt = curl_init();

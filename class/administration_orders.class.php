@@ -6,6 +6,9 @@ class administration_orders extends customer_orders {
     public $order_data_post;
     public $order_data_error = array();
 
+    /**
+     * administration_orders constructor.
+     */
     function __construct() {
 
         try {
@@ -23,6 +26,9 @@ class administration_orders extends customer_orders {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function update_admin_order_status() {
 
         $this->order_data_post = array_map('trim', $this->order_data_post);
@@ -56,6 +62,9 @@ class administration_orders extends customer_orders {
         }
     }
 
+    /**
+     *
+     */
     public function check_errors() {
 
         if (array_key_exists('status', $this->order_data_post) && $this->order_data_post['status'] == '') {

@@ -7,6 +7,9 @@ class search_products extends get_products {
     public $search_str_json = true;
     private $quantity_up_to = 6;
 
+    /**
+     * search_products constructor.
+     */
     function __construct() {
 
         try {
@@ -24,6 +27,9 @@ class search_products extends get_products {
         }
     }
 
+    /**
+     * @return array|bool|false|string
+     */
     public function search_products() {
 
         if (strlen($this->conn->connect_error) === 0) {

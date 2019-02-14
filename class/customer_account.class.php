@@ -18,6 +18,9 @@ class customer_account {
         'default' => 'Damen und Herren'
     );
 
+    /**
+     * customer_account constructor.
+     */
     function __construct() {
 
         try {
@@ -35,6 +38,9 @@ class customer_account {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function get_customer_data() {
 
         if (strlen($this->conn->connect_error) === 0) {
@@ -68,6 +74,9 @@ class customer_account {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function set_customer_data() {
 
         $this->customer_data = $this->customer_data_post;
@@ -90,6 +99,9 @@ class customer_account {
         }
     }
 
+    /**
+     * @return mixed|string
+     */
     public function gen_salutation_string() {
 
         if (is_array($this->customer_data) && (isset($this->customer_data['anrede']) && strlen($this->customer_data['anrede'])) && (isset($this->customer_data['nachname']) && strlen($this->customer_data['nachname']))) {
@@ -104,6 +116,10 @@ class customer_account {
         return $retString;
     }
 
+    /**
+     * @param $salutation
+     * @return mixed
+     */
     public function gen_short_salutation_string($salutation) {
 
         if (isset($salutation) && strlen($salutation)) {
@@ -117,6 +133,9 @@ class customer_account {
         return $retString;
     }
 
+    /**
+     *
+     */
     public function check_errors() {
 
         if ($this->customer_data_post['anrede'] == '') {

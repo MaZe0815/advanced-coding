@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Handles insertion of given meta tags in head of page nad sets index for se
- */
 class set_meta_tags {
 
     var $seo_array = array(
@@ -13,9 +10,7 @@ class set_meta_tags {
     );
 
     /**
-     * Sets given meta´tags and index for given strings for se
-     *
-     * @param array $add_metas
+     * @param bool $add_metas
      */
     function set_meta_tags_index($add_metas = false) {
 

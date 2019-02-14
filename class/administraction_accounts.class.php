@@ -4,6 +4,9 @@ class administraction_accounts extends customer_account {
 
     public $conn;
 
+    /**
+     * administraction_accounts constructor.
+     */
     function __construct() {
 
         try {
@@ -21,6 +24,9 @@ class administraction_accounts extends customer_account {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function update_admin_account() {
 
         $this->customer_data_post = array_map('trim', $this->customer_data_post);
@@ -42,6 +48,9 @@ class administraction_accounts extends customer_account {
         }
     }
 
+    /**
+     *
+     */
     public function check_errors() {
 
         if ($this->customer_data_post['active'] == '') {
@@ -55,6 +64,10 @@ class administraction_accounts extends customer_account {
         }
     }
 
+    /**
+     * @param $userlevel
+     * @return string
+     */
     public function humanize_userlevel($userlevel) {
 
         if ($userlevel === "1") {
@@ -66,6 +79,10 @@ class administraction_accounts extends customer_account {
         }
     }
 
+    /**
+     * @param $state
+     * @return string
+     */
     public function humanize_optin_state($state) {
 
         if ($state === "1") {
@@ -77,6 +94,10 @@ class administraction_accounts extends customer_account {
         }
     }
 
+    /**
+     * @param $state
+     * @return string
+     */
     public function humanize_active_state($state) {
 
         if ($state === "1") {
