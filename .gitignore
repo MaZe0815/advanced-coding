@@ -52,6 +52,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# JetBrains Project Files
+/.idea/
+/.idea/*
+
 # _Stuff
 /_Stuff
 
