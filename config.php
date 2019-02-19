@@ -55,14 +55,16 @@ if (HTTP_HOST === "http://localhost") {
 session_start();
 
 // auto include classes
-function __autoload($className) {
+function __autoload($class_name) {
 
-    $classFile = HTTP_HOST . ROOT_URL . PROJECT_NAME . '/class/' . $className . '.class.php';
+    $classFile = HTTP_HOST . ROOT_URL . PROJECT_NAME . '/class/' . $class_name . '.class.php';
     $fileHeaders = @get_headers($classFile);
 
     if ($fileHeaders[0] == 'HTTP/1.1 200 OK' || $fileHeaders[0] === 'HTTP/1.1 301 Moved Permanently') {
-        require_once(trim(__DIR__ . '/class/' . $className . '.class.php'));
+
+        require_once(trim(__DIR__ . '/class/' . $class_name . '.class.php'));
     } else {
-        throw new Exception('Unable to load ' . $className);
+
+        throw new Exception('Unable to load ' . $class_name);
     }
 }
