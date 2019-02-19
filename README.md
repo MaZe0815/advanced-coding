@@ -17,3 +17,6 @@ dissected, their effort estimated, dependencies uncovered and split among the st
  
 Successively, the participants return their own programmed modules and see the jointly created project grow.
 Finally, the system undergoes an integration and user acceptance test.
+
+**_This project has been completed and will only be updated inappropriately for testing purposes.
+This project is not suitable for productive use._**
