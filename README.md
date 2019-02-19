@@ -1,5 +1,6 @@
 # Study Project Advanced Coding (Online-Shop)
 ## Project participants in this case were in total "three" persons (project team).
+### Degree program: Master Digital Business Management
 
 Short Exposé:
 
