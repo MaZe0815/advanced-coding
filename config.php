@@ -11,13 +11,16 @@ if (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !
 
 define('HTTP_HOST', $scheme . getenv('HTTP_HOST'));
 define('ROOT_DIR', dirname(__FILE__));
-define('ROOT_URL', substr($_SERVER['PHP_SELF'], 0, - (strlen($_SERVER['SCRIPT_FILENAME']) - strlen(ROOT_DIR))));
+define('ROOT_URL', substr($_SERVER['PHP_SELF'], 0, -(strlen($_SERVER['SCRIPT_FILENAME']) - strlen(ROOT_DIR))));
 define('SCRIPT_NAME', basename($_SERVER['PHP_SELF']));
 
 // define projectname
 define('PROJECT_NAME', '');
 
-if (HTTP_HOST === "http://localhost") {
+$dev_env = array("http://localhost", "http://ac-shop.localhost");
+$prod_env = array("https://acws191.erlenkaemper.eu", "http://acws191.erlenkaemper.eu");
+
+if (in_array(HTTP_HOST, $dev_env)) {
 
     // define error display stages (Development)
     ini_set('display_errors', 1);
@@ -33,7 +36,7 @@ if (HTTP_HOST === "http://localhost") {
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'advanced_coding_shop');
     define('DB_TABLE_NAME', '');
-} elseif (HTTP_HOST === "https://acws191.erlenkaemper.eu" || HTTP_HOST === "http://acws191.erlenkaemper.eu") {
+} elseif (in_array(HTTP_HOST, $prod_env)) {
 
     // define error display stages (Production)
     ini_set('display_errors', 0);
@@ -55,16 +58,23 @@ if (HTTP_HOST === "http://localhost") {
 session_start();
 
 // auto include classes
-function __autoload($class_name) {
+function __autoload($class_name)
+{
 
     $classFile = HTTP_HOST . ROOT_URL . PROJECT_NAME . '/class/' . $class_name . '.class.php';
     $fileHeaders = @get_headers($classFile);
 
-    if ($fileHeaders[0] == 'HTTP/1.1 200 OK' || $fileHeaders[0] === 'HTTP/1.1 301 Moved Permanently') {
+    try {
 
-        require_once(trim(__DIR__ . '/class/' . $class_name . '.class.php'));
-    } else {
+        if ($fileHeaders[0] == 'HTTP/1.1 200 OK' || $fileHeaders[0] === 'HTTP/1.1 301 Moved Permanently') {
 
-        throw new Exception('Unable to load ' . $class_name);
+            require_once(trim(__DIR__ . '/class/' . $class_name . '.class.php'));
+        } else {
+
+            throw new Exception('Unable to load ' . $class_name);
+        }
+    } catch (Exception $e) {
+
+        echo $e->getMessage(), "\n";
     }
 }
